@@ -1,0 +1,16 @@
+{
+  "name": "ghzk/first",
+  "authors": [
+    {
+      "name": "fanyitian",
+      "email": "yitian920@163.com"
+    }
+  ],
+  "config": {
+    "vendor-dir": "vendor"
+  },
+  "require": {
+    "thefair/thefairlib": "*",
+    "curl/curl": "<2.0"
+  }
+}
