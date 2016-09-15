@@ -1,4 +1,4 @@
-# first
-gan huo zei kuai 
+Custom view engine example
+============
 
-the first project.
+examples for using a custom view engine(smarty) with yaf
