@@ -6,6 +6,6 @@
     </head>
     <body>
     	范宜添吃屁 
-    </body>
+    </body> 
     {{ include file="includeJs.tpl" }}
 </html>
