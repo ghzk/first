@@ -7,16 +7,15 @@
  */
 use Yaf\Dispatcher;
 use Controller\Base;
+use Yaf\Registry;
 use Yaf\Controller_Abstract as Controller;
 
-class IndexController extends Controller
+class IndexController extends Base
 {
 
     public function indexAction()
     {
         $this->getView()->assign("body", "Hello Wrold<br/>");
-
-//        return false;
     }
 
     public function testAction()
