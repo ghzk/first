@@ -17,17 +17,52 @@ namespace Controller;
 use Yaf\Controller_Abstract as Controller;
 use Yaf\Dispatcher;
 use Response\Response;
+use Weixin\Auth;
+use Config\Config;
+use Exception;
 
 class Base extends Controller
 {
+    protected $needWxAuth = true;   // 是否需要微信授权登陆获取openid
+    protected $arrInput = array();
+
     /**
      * Controller的init方法会被自动首先调用
      */
     public function init()
     {
-        // 关闭自动渲染
-//        Dispatcher::getInstance()->disableView();
+        $this->arrInput = $this->getRequest()->getQuery();
+
+        $this->setWxUser();
     }
+
+    /**
+     * 设置微信用户信息
+     * @throws Exception
+     */
+    protected function setWxUser()
+    {
+        if ($this->needWxAuth) {
+            $arrWxConf = Config::get_app_wechat();
+            if (empty($arrWxConf)) {
+                throw new Exception('wechat config not found.');
+            }
+            $arrOptions = [
+                'token'     => $arrWxConf['token'],
+                'appid'     => $arrWxConf['appid'],
+                'appsecret' => $arrWxConf['appsecret'],
+            ];
+
+            $auth = new Auth($arrOptions);
+            $wxUser = $auth->wxuser;
+            if (empty($wxUser)) {
+                throw new Exception('wechat get_user_info failed.');
+            }
+            $this->arrInput['openid'] = $wxUser['openid'];
+            $this->arrInput['wxuser'] = $wxUser;
+        }
+    }
+
 
     /**
      * Assign values to View engine
