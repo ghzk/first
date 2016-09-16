@@ -54,12 +54,10 @@ class Base extends Controller
             ];
 
             $auth = new Auth($arrOptions);
-            $wxUser = $auth->wxuser;
-            if (empty($wxUser)) {
+            if (empty($auth->open_id)) {
                 throw new Exception('wechat get_user_info failed.');
             }
-            $this->arrInput['openid'] = $wxUser['openid'];
-            $this->arrInput['wxuser'] = $wxUser;
+            $this->arrInput['openid'] = $auth->open_id;
         }
     }
 

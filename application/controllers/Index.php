@@ -13,6 +13,10 @@ class IndexController extends Base
 {
     public function indexAction()
     {
+        echo "<pre>";
+        print_r($this->arrInput);
+        exit;
+
         $this->getView()->assign("body", "Hello Wrold<br/>");
     }
 
