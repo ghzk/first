@@ -52,13 +52,22 @@
     <script type="text/javascript" src="/js/widget/slidePage.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
-            slidePage.init({
-                'index' : 1,
-                'after' : function(index,direction,target){},
-                'speed' : 700,
-                'refresh'  : true,
-                'useAnimation' : true
-             });
+            var initPage = function () {
+                slidePage.init({
+                    'index' : 1,
+                    'after' : function(index,direction,target){},
+                    'speed' : 700,
+                    'refresh'  : true,
+                    'useAnimation' : true
+                });
+                new bindBtnFunc();
+            }
+            var bindBtnFunc = function () {
+                $('.step-2').on('click',function () {
+                    slidePage.next();
+                });
+            }
+            new initPage();
     	});
     </script>
 </html> 
