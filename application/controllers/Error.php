@@ -15,11 +15,11 @@ class ErrorController extends Yaf\Controller_Abstract
     //从2.1开始, errorAction支持直接通过参数获取异常
     public function errorAction($exception)
     {
-        if (Registry::get('config')->environment != 'pro') {
-            echo '<pre>';
-            print_r($exception->getMessage());
-            echo "<br>";
-        }
+//        if (Registry::get('config')->environment != 'pro') {
+//            echo '<pre>';
+//            print_r($exception->getMessage());
+//            echo "<br>";
+//        }
         Dispatcher::getInstance()->autoRender(false);
         switch ($exception->getCode()) {
             case YAF\ERR\NOTFOUND\MODULE:
@@ -29,18 +29,12 @@ class ErrorController extends Yaf\Controller_Abstract
             case 404:
                 header("Content-type: text/html; charset=utf-8");
                 header("status: 404 Not Found");
-//                $this->display("404");
-                echo "404";
+                echo 404, ":", $exception->getMessage();
                 break;
             default :
                 header("Content-type: text/html; charset=utf-8");
                 header("status: 500 Internal Server Error");
-                echo $exception->getMessage();
-//                if (Registry::get('config')->environment == 'pro') {
-//                    $this->display("500", ['msg' => $exception->getMessage()]);
-//                } else {
-//                    echo $exception->getMessage();
-//                }
+                echo 500, ":", $exception->getMessage();
                 break;
         }
     }

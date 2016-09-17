@@ -11,6 +11,7 @@
   },
   "require": {
     "thefair/thefairlib": "*",
-    "curl/curl": "<2.0"
+    "curl/curl": "<2.0",
+    "endroid/qrcode": "^1.7"
   }
 }

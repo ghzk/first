@@ -42,6 +42,11 @@ class Base extends Controller
      */
     protected function setWxUser()
     {
+        // @todo: mock
+        $this->arrInput['openid'] = 'o1hKav1CL_LDiQALJOe8qTvBCMYw';
+
+        return;
+
         if ($this->needWxAuth) {
             $arrWxConf = Config::get_app_wechat();
             if (empty($arrWxConf)) {
@@ -101,12 +106,12 @@ class Base extends Controller
         $body = array(
             'code'    => $code,
             'message' => $msg,
-            'result'  => (object)$result,
+            'result'  => $result,
         );
         Response::Json($body);
     }
 
-    public function showError($error, $result = array(), $code = 10000)
+    public function showError($error, $code = 10000, $result = array())
     {
         $this->showResult($result, $error, $code);
     }

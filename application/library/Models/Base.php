@@ -23,7 +23,7 @@ use \Predis\Client as Redis;
 class Base
 {
     static public $instance = array();
-    static public $dbName = 'blogs';
+    static public $dbName = 'first';
 
     static protected $capsule;
     static protected $db = [];

@@ -1,0 +1,218 @@
+<?php
+/***************************************************************************
+ *
+ * Copyright (c) 2016 Baidu.com, Inc. All Rights Reserved
+ *
+ **************************************************************************/
+
+/**
+ * @file   Activity.php
+ * @author fanyitian (fanyitian@baidu.com)
+ * @date   2016-09-16
+ * @brief
+ *
+ **/
+use Models\Base;
+use Config\Config;
+
+class ActivityModel extends Base
+{
+    const TABLE_ACTIVITY = 'activity';
+
+    // 状态
+    const STATUS_NOT_WIN = 0;   // 未中奖
+    const STATUS_WINED = 1;     // 已中奖
+    const STATUS_CHECKED = 2;   // 已核销
+
+    // 每天参与次数
+    const MAX_JOIN_TIMES = 2;
+
+    // 中奖概率
+    public $defaultPrizeOdds = 50;
+
+
+    /**
+     * @return ActivityModel
+     */
+    static public function Instance()
+    {
+        return parent::Instance();
+    }
+
+    public function __construct()
+    {
+    }
+
+    /**
+     * 获取今日起始结束时间
+     * @return array
+     */
+    public static function getTodayStartEnd()
+    {
+        return [
+            'now'   => date('Y-m-d H:i:s', time()),
+            'start' => date('Y-m-d 00:00:00', time()),
+            'end'   => date('Y-m-d 00:00:00', time() + 86400),
+        ];
+    }
+
+    /**
+     * 获取今日用户参与列表
+     *
+     * @param $strOpenId
+     *
+     * @return array|static[]
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getUserTodayJoinList($strOpenId)
+    {
+        $todayTime = self::getTodayStartEnd();
+
+        $arrList = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->select('*')
+            ->where('openid', '=', $strOpenId)
+            ->where('create_time', '>', $todayTime['start'])
+            ->where('create_time', '<', $todayTime['end'])
+            ->get();
+
+        return $arrList;
+    }
+
+    /**
+     * 获取一条act记录
+     *
+     * @param $intActId
+     *
+     * @return mixed|static
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getActById($intActId)
+    {
+        $arrOne = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->find($intActId);
+
+        return $arrOne;
+    }
+
+    /**
+     * 添加参与记录
+     *
+     * @param $strOpenId
+     * @param $intPrizeId
+     * @param $intStatus
+     *
+     * @return bool
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function addActivityJoinInfo($strOpenId, $intPrizeId, $intStatus)
+    {
+        $arrParams = [
+            'openid'      => $strOpenId,
+            'prize_id'    => $intPrizeId,
+            'status'      => $intStatus,
+            'create_time' => date('Y-m-d H:i:s', time()),
+        ];
+        $intActId = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->insertGetId($arrParams);
+
+        return $intActId;
+    }
+
+    /**
+     * 根据中奖概率判断是否中奖
+     *
+     * @param null $intOdds 中奖概率(0-100)
+     *
+     * @return bool
+     */
+    public function _checkWin($intOdds = null)
+    {
+        $rand = mt_rand(0, 99);
+        $intOdds = is_null($intOdds) ? $this->defaultPrizeOdds : $intOdds;
+
+        return $rand < $intOdds ? true : false;
+    }
+
+    /**
+     * 抽奖
+     *
+     * @param $arrInput
+     *
+     * @return int|null
+     * @throws Exception
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function lucky($arrInput)
+    {
+        $strOpenId = $arrInput['openid'];
+
+        // 获取用户参与次数
+        $arrJoinList = $this->getUserTodayJoinList($strOpenId);
+        $times = count($arrJoinList);
+        if ($times >= self::MAX_JOIN_TIMES) {
+            $arrErrorMap = Config::get_app_error();
+            throw new Exception($arrErrorMap[10011], 10011);
+        }
+
+        $bolWinRes = false;     // 是否中奖
+        $intPrizeId = 0;
+        $intActId = 0;
+        $app = $this->db();
+        try {
+            $app->beginTransaction();
+
+            $bolWin = $this->_checkWin();
+            $intPrizeId = PrizeModel::Instance()->getWinPrizeId();
+            if ($bolWin && $intPrizeId) {
+                // 添加获奖记录
+                // 对应奖品库存 -1
+                // 添加日志
+                $query1 = $this->addActivityJoinInfo($strOpenId, $intPrizeId, self::STATUS_WINED);
+                $intActId = $query1;
+
+                $query2 = PrizeModel::Instance()->decreasePrize($intPrizeId);
+                $query3 = LogModel::Instance()->add('wined', [
+                    'openid'   => $strOpenId,
+                    'prize_id' => $intPrizeId,
+                ]);
+                $bolWinRes = true;
+            } else {
+                // 未中奖或没有奖品了
+                $query1 = $this->addActivityJoinInfo($strOpenId, 0, self::STATUS_NOT_WIN);
+                $intActId = $query1;
+
+                $query2 = true;
+                $query3 = LogModel::Instance()->add('not_win', [
+                    'openid'   => $strOpenId,
+                    'prize_id' => 0,
+                ]);
+
+                $bolWinRes = false;
+            }
+
+            if ($query1 !== false && $query2 !== false && $query3 !== false) {
+                $app->commit();
+            } else {
+                $app->rollBack();
+            }
+        } catch (Exception $e) {
+            $app->rollBack();
+            $bolWinRes = false;
+        }
+
+        $arrResult = [];
+        if ($bolWinRes) {
+            $arrResult = [
+                'prize_id' => $intPrizeId,
+                'act_id'   => $intActId,
+            ];
+        }
+
+        return $arrResult;
+    }
+
+
+}

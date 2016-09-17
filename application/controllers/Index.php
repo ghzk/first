@@ -6,16 +6,21 @@
  * @see    http://www.php.net/manual/en/class.yaf-controller-abstract.php
  */
 use Controller\Base;
-use Weixin\Auth;
-use Config\Config;
 
 class IndexController extends Base
 {
     public function indexAction()
     {
-        echo "<pre>";
-        print_r($this->arrInput);
-        exit;
+        $arrInput = $this->arrInput;
+        // @todo: params
+        // source
+
+
+        // 增加一个pv日志
+        LogModel::Instance()->add('pv', [
+            'openid' => $arrInput['openid'],
+            'source' => isset($arrInput['source']) ? $arrInput['source'] : null,
+        ]);
 
         $this->getView()->assign("body", "Hello Wrold<br/>");
     }
