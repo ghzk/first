@@ -65,11 +65,15 @@
         },
         'prev': function(){
             if(keyIndex>0){
-                var item = $(opt.pageContainer).eq(keyIndex--)
-                prevPage(item)
-                isScroll(item.index())
-                slideScroll(item.index())
-                delay=false
+                if(opt.unSlidePageList.indexOf(keyIndex) != -1){
+                    return false;
+                }else{
+                    var item = $(opt.pageContainer).eq(keyIndex--)
+                    prevPage(item)
+                    isScroll(item.index())
+                    slideScroll(item.index())
+                    delay=false
+                }
             }
         },
         'fire':function(index){

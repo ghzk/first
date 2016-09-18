@@ -194,34 +194,35 @@
                 <div class="winning-area hide">
                     <div class="step step-41 zoomIn">
                         <div class="prize-area">
-                            <div class="prize-brand">MICHAEL KORS</div>
-                            <div class="prize-name">限量版信封型卡夹</div>
-                            <div class="prize-location">
-                                MICHAEL KORS<br>
-                                北区一层N1-08
-                            </div>
+                            <img class="prize-brand" src=""/>
+                            <div class="prize-name"></div>
+                            <div class="prize-location"></div>
                         </div>
                         <img class="page-bg" src="/images/page-41.jpg"/>
-                        <img class="qr-code" src="/images/qr-code.jpg"/>
+                        <img class="qr-code" src=""/>
                         <img class="down-arrow hide" src="/images/down-arrow.png">
                     </div>
                 </div>
-                <div class="second-chance-area hide">
-                    <div class="step step-42 zoomIn">
-                        <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
-                        <img class="gift heartBeat" src="/images/gift.png"/>
+                {{ if ($rest_chance == 2) }}
+                    <div class="unwinning-area hide">
+                        <div class="step step-42 zoomIn">
+                            <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
+                            <img class="gift heartBeat" src="/images/gift.png"/>
+                        </div>
                     </div>
-                </div>
-                <div class="second-fail-area hide">
-                    <div class="step step-43 zoomIn">
-                        <img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>
+                {{ elseif ($rest_chance == 1) }}
+                    <div class="unwinning-area hide">
+                        <div class="step step-43 zoomIn">
+                            <img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>
+                        </div>
                     </div>
-                </div>
-                <div class="tomorrow-area hide">
-                    <div class="step step-44 zoomIn">
-                        <img class="page-bg" src="/images/page-44.jpg"/>
+                {{ elseif ($rest_chance == 0) }}
+                    <div class="unwinning-area hide">
+                        <div class="step step-44 zoomIn">
+                            <img class="page-bg" src="/images/page-44.jpg"/>
+                        </div>
                     </div>
-                </div>
+                {{ /if }}
             </div>
             <div class="item page5">
                 <div class="step step-5 rollInRight">
@@ -294,31 +295,67 @@
                 });
                 $('.balloon').on('click',function () {
                     $('.balloon').css({
-                        '-webkit-animation' : ''
+                        '-webkit-animation' : 'none'
                     });
                     $('.balloon').animate({
-                        bottom:"30rem"
+                        bottom: '30rem'
                     },2000);
                     $.ajax({
                         type: 'get',
                         url: '/prize/lucky',
                         success: function(data) {
-                            slidePage.index(4);
+                            setTimeout(function () {
+                                slidePage.index(4);
+                                switch (data.code) {
+                                    case 0:
+                                        $('.winning-area').show();
+                                        $('.prize-name').html(data.result.prize.product);
+                                        $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
+                                        //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
+                                        $('.qr-code').attr('src',data.result.qrcode);
+                                        break;
+                                    case 10010:
+                                        $('.unwinning-area').show();
+                                        break;
+                                    case 10011:
+                                        $('.unwinning-area').show();
+                                        break;
+                                }
+                            },1000);
+                        }
+                    });
+                });
+                $('.gift').on('click',function () {
+                    $.ajax({
+                        type: 'get',
+                        url: '/prize/lucky',
+                        success: function(data) {
                             switch (data.code) {
                                 case 0:
+                                    $('.unwinning-area').hide();
                                     $('.winning-area').show();
+                                    $('.prize-name').html(data.result.prize.product);
+                                    $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
+                                    //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
+                                    $('.qr-code').attr('src',data.result.qrcode);
                                     break;
                                 case 10010:
+                                    var html = 
+                                        '<div class="step step-43 zoomIn">'+
+                                            '<img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>'+
+                                        '</div>';
+                                    $('.unwinning-area').html(html);
                                     break;
                                 case 10011:
+                                    var html = 
+                                        '<div class="step step-44 zoomIn">'+
+                                            '<img class="page-bg" src="/images/page-44.jpg"/>'+
+                                        '</div>';
+                                    $('.unwinning-area').html(html);
                                     break;
                             }
                         }
                     });
-                    //$('.winning-area').show();
-                    //$('.second-chance-area').show();
-                    //$('.second-fail-area').show();
-                    $('.tomorrow-area').show();
                 });
             }
             new initPage();
