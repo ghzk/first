@@ -122,6 +122,28 @@ class ActivityModel extends Base
     }
 
     /**
+     * 修改状态
+     *
+     * @param $intActId
+     * @param $intStatus
+     *
+     * @return int
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function updateActStatus($intActId, $intStatus)
+    {
+        $bolRes = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->where('id', '=', $intActId)
+            ->update([
+                'status' => $intStatus
+            ]);
+
+        return $bolRes;
+    }
+
+
+    /**
      * 根据中奖概率判断是否中奖
      *
      * @param null $intOdds 中奖概率(0-100)
@@ -148,12 +170,12 @@ class ActivityModel extends Base
     public function lucky($arrInput)
     {
         $strOpenId = $arrInput['openid'];
+        $arrErrorMap = Config::get_app_error();
 
         // 获取用户参与次数
         $arrJoinList = $this->getUserTodayJoinList($strOpenId);
         $times = count($arrJoinList);
         if ($times >= self::MAX_JOIN_TIMES) {
-            $arrErrorMap = Config::get_app_error();
             throw new Exception($arrErrorMap[10011], 10011);
         }
 
@@ -203,15 +225,58 @@ class ActivityModel extends Base
             $bolWinRes = false;
         }
 
-        $arrResult = [];
-        if ($bolWinRes) {
-            $arrResult = [
-                'prize_id' => $intPrizeId,
-                'act_id'   => $intActId,
-            ];
+        if (!$bolWinRes) {
+            throw new Exception($arrErrorMap[10010], 10010);
         }
+        $arrResult = [
+            'prize_id' => $intPrizeId,
+            'act_id'   => $intActId,
+        ];
 
         return $arrResult;
+    }
+
+    /**
+     * 核验
+     *
+     * @param $arrInput
+     *
+     * @return bool
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function check($arrInput)
+    {
+        $intActId = intval($arrInput['act_id']);
+        $strOpenId = $arrInput['openid'];
+        $intCode = intval($arrInput['code']);
+        $intPrizeId = intval($arrInput['prize_id']);
+
+        $bolRes = false;
+        $app = $this->db();
+        try {
+            $app->beginTransaction();
+
+            // 修改act状态: status = 2
+            $query1 = $this->updateActStatus($intActId, self::STATUS_CHECKED);
+
+            // 添加日志
+            $query2 = LogModel::Instance()->add('check', [
+                'openid'     => $strOpenId,
+                'prize_id'   => $intPrizeId,
+                'check_code' => $intCode,
+            ]);
+
+            if ($query1 !== false && $query2 !== false) {
+                $app->commit();
+                $bolRes = true;
+            } else {
+                $app->rollBack();
+            }
+        } catch (Exception $e) {
+            $app->rollBack();
+        }
+
+        return $bolRes;
     }
 
 
