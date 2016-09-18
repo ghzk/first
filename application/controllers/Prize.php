@@ -29,27 +29,18 @@ class PrizeController extends Base
     {
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
-        $arrErrorMap = Config::get_app_error();
 
-        try {
-            $arrInfo = ActivityModel::Instance()->lucky($arrInput);
-            if (!empty($arrInfo)) {
-                $intPrizeId = $arrInfo['prize_id'];
-                $intActId = $arrInfo['act_id'];
+        $arrInfo = ActivityModel::Instance()->lucky($arrInput);
+        $intPrizeId = $arrInfo['prize_id'];
+        $intActId = $arrInfo['act_id'];
 
-                $arrPrize = PrizeModel::Instance()->getOnePrize($intPrizeId);
-                $qrcode = $this->_buildQrCode($strOpenId, $intActId);
+        $arrPrize = PrizeModel::Instance()->getOnePrize($intPrizeId);
+        $qrcode = $this->_buildQrCode($strOpenId, $intActId);
 
-                $this->showResult([
-                    'prize'  => $arrPrize,
-                    'qrcode' => $qrcode,
-                ]);
-            } else {
-                $this->showError($arrErrorMap[10010], 10010);
-            }
-        } catch (Exception $e) {
-            $this->showError($e->getMessage(), $e->getCode());
-        }
+        $this->showResult([
+            'prize'  => $arrPrize,
+            'qrcode' => $qrcode,
+        ]);
     }
 
     /**
@@ -62,7 +53,7 @@ class PrizeController extends Base
      */
     private function _buildQrCode($openId, $actId)
     {
-        $host = 'http://' . $_SERVER['HTTP_HOST'] . '/prize/code';
+        $host = 'http://' . $_SERVER['HTTP_HOST'] . '/check/index';
         $params = [
             'act_id' => $actId,
             'openid' => $openId,

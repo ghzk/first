@@ -27,24 +27,7 @@ class CheckController extends Base
     public function indexAction()
     {
         $arrInput = $this->arrInput;
-        $intActId = intval($arrInput['act_id']);
-        $strOpenId = $arrInput['openid'];
-        $arrErrorMap = Config::get_app_error();
-
-        if (empty($intActId) || empty($strOpenId)) {
-            // 参数不合法
-            throw new Exception($arrErrorMap[10020], 10020);
-        }
-        $arrAct = ActivityModel::Instance()->getActById($intActId);
-        $intTime = strtotime($arrAct['create_time']);
-        if (empty($arrAct)) {
-            throw new Exception($arrErrorMap[10020], 10020);
-        }
-
-        if ($strOpenId !== $arrAct['openid'] || (time() - $intTime) > self::EXP_TIME) {
-            // 伪造或二维码已过期
-            throw new Exception($arrErrorMap[10021], 10021);
-        }
+        $arrInput = $this->_checkParams($arrInput);
 
         // display...
     }
@@ -54,9 +37,84 @@ class CheckController extends Base
      */
     public function codeAction()
     {
-        // params:
-        //  act_id
-        //  openid
-        //  code
+        $arrInput = $this->arrInput;
+        $arrInput = $this->_checkParams($arrInput, true);
+        $arrErrorMap = Config::get_app_error();
+
+        $bolRes = ActivityModel::Instance()->check($arrInput);
+        if (!$bolRes) {
+            $this->showError($arrErrorMap[10030], 10030);
+        } else {
+            $this->showResult([], '核验成功');
+        }
     }
+
+    /**
+     * 检查参数
+     *
+     * @param $arrInput
+     * @param bool $bolCheckCode
+     *
+     * @return mixed
+     * @throws Exception
+     */
+    private function _checkParams($arrInput, $bolCheckCode = false)
+    {
+        $intActId = intval($arrInput['act_id']);
+        $strOpenId = $arrInput['openid'];
+        $intCode = intval($arrInput['code']);
+        $arrErrorMap = Config::get_app_error();
+
+        $errCodeInvalidParam = 10020;
+        $errCodeExpQrCode = 10021;
+        $errCodeStatusUnWin = 10022;
+        $errCodeStatusChecked = 10023;
+        $errCodeInValidCode = 10024;
+
+        if (empty($intActId) || empty($strOpenId)) {
+            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+        }
+        if ($bolCheckCode && empty($intCode)) {
+            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+        }
+
+
+        $arrAct = ActivityModel::Instance()->getActById($intActId);
+        $intTime = strtotime($arrAct['create_time']);
+        if (empty($arrAct)) {
+            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+        }
+
+        if ($strOpenId !== $arrAct['openid'] || (time() - $intTime) > self::EXP_TIME) {
+            // 伪造或二维码已过期
+            throw new Exception($arrErrorMap[$errCodeExpQrCode], $errCodeExpQrCode);
+        }
+
+        // 检查状态
+        switch ($arrAct['status']) {
+            case ActivityModel::STATUS_NOT_WIN:
+                throw new Exception($arrErrorMap[$errCodeStatusUnWin], $errCodeStatusUnWin);
+                break;
+            case ActivityModel::STATUS_CHECKED:
+                throw new Exception($arrErrorMap[$errCodeStatusChecked], $errCodeStatusChecked);
+                break;
+            default:
+                break;
+        }
+
+        // 检查code
+        if ($bolCheckCode) {
+            // 检查prizeId对应的code
+            $intPrizeId = $arrAct['prize_id'];
+            $arrPrizeInfo = PrizeModel::Instance()->getOnePrize($intPrizeId);
+
+            if ($intCode !== intval($arrPrizeInfo['code'])) {
+                throw new Exception($arrErrorMap[$errCodeInValidCode], $errCodeInValidCode);
+            }
+            $arrInput['prize_id'] = $intPrizeId;
+        }
+
+        return $arrInput;
+    }
+
 }
