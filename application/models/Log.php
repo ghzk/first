@@ -32,6 +32,21 @@ class LogModel extends Base
     }
 
     /**
+     * 获取日志列表
+     * @return array|static[]
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getList()
+    {
+        $arrList = $this->db()
+            ->table(self::TABLE_USER_LOG)
+            ->select('*')
+            ->get();
+
+        return $arrList;
+    }
+
+    /**
      * 添加日志
      *
      * @param $type
@@ -51,7 +66,7 @@ class LogModel extends Base
         isset($params['source']) && $arrParams['source'] = $params['source'];
         isset($params['prize_id']) && $arrParams['prize_id'] = $params['prize_id'];
         isset($params['check_code']) && $arrParams['check_code'] = $params['check_code'];
-        
+
         $bolRes = $this->db()
             ->table(self::TABLE_USER_LOG)
             ->insert($arrParams);

@@ -86,6 +86,17 @@ class PrizeModel extends Base
         return $arrOne;
     }
 
+    /**
+     * 获取sku总库存量
+     * @return mixed
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getSkuSum()
+    {
+        return $this->db()
+            ->table(self::TABLE_PRIZE)
+            ->sum('sku');
+    }
 
     /**
      * 库存减1

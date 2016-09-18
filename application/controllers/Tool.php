@@ -12,11 +12,11 @@
  * @brief
  *
  **/
-use Yaf\Controller_Abstract as Controller;
+use Controller\Base;
 use Weixin\CallBackApiTest;
 use Config\Config;
 
-class ToolController extends Controller
+class ToolController extends Base
 {
     protected $needWxAuth = false;
 
@@ -24,6 +24,20 @@ class ToolController extends Controller
     {
     }
 
+    /**
+     * 统计接口
+     */
+    public function statisticAction()
+    {
+        $arrResult = StatisticModel::Instance()->summary();
+
+        $this->showResult($arrResult);
+    }
+
+    /**
+     * 微信回调
+     * @return bool
+     */
     public function wxcallbacktestAction()
     {
         $arrWxConf = Config::get_app_wechat();

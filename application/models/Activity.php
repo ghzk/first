@@ -28,7 +28,7 @@ class ActivityModel extends Base
     const MAX_JOIN_TIMES = 2;
 
     // 中奖概率
-    public $defaultPrizeOdds = 50;
+    public static $defaultPrizeOdds = 50;
 
 
     /**
@@ -153,7 +153,7 @@ class ActivityModel extends Base
     public function _checkWin($intOdds = null)
     {
         $rand = mt_rand(0, 99);
-        $intOdds = is_null($intOdds) ? $this->defaultPrizeOdds : $intOdds;
+        $intOdds = is_null($intOdds) ? self::$defaultPrizeOdds : $intOdds;
 
         return $rand < $intOdds ? true : false;
     }
