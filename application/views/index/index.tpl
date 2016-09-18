@@ -309,6 +309,7 @@
                 });
                 $('.slidePage-container').show();
                 new bindBtnFunc();
+                _hmt.push(['_trackEvent', 'homePage', 'homePage']);
             }
             var bindBtnFunc = function () {
                 $('.expression').on('click',function () {
@@ -361,6 +362,7 @@
                                 },1000);
                             }
                         });
+                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
@@ -410,6 +412,7 @@
                                 }
                             }
                         });
+                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
@@ -428,5 +431,14 @@
             }
             new initPage();
     	});
+    </script>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+          var hm = document.createElement("script");
+          hm.src = "//hm.baidu.com/hm.js?fce7bf99b5708f0317ab48f067c0aba4";
+          var s = document.getElementsByTagName("script")[0]; 
+          s.parentNode.insertBefore(hm, s);
+        })();
     </script>
 </html> 
