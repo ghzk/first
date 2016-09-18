@@ -25,7 +25,8 @@ class ActivityModel extends Base
     const STATUS_CHECKED = 2;   // 已核销
 
     // 每天参与次数
-    const MAX_JOIN_TIMES = 2;
+//    const MAX_JOIN_TIMES = 2;
+    const MAX_JOIN_TIMES = 20;
 
     // 中奖概率
     public static $defaultPrizeOdds = 50;

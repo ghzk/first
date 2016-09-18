@@ -27,6 +27,7 @@ class IndexController extends Base
         // 剩余抽奖次数
         $intRestChance = ActivityModel::Instance()->getUserRestChance($strOpenId);
         $this->getView()->assign('rest_chance', $intRestChance);
+        $this->getView()->assign('openid', $strOpenId);
 
         $this->getView()->assign("body", "Hello Wrold<br/>");
     }
