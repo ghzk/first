@@ -143,6 +143,12 @@
                 left: 1.25rem;
                 bottom: 1.4rem;
             }
+            .gift{
+                position: absolute;
+                height: 22.9%;
+                right: 0.8rem;
+                bottom: 4rem;
+            }
         </style>
     </head>
     <body>
@@ -186,7 +192,7 @@
             </div>
             <div class="item page4">
                 <div class="winning-area hide">
-                    <div class="step step-4 zoomIn">
+                    <div class="step step-41 zoomIn">
                         <div class="prize-area">
                             <div class="prize-brand">MICHAEL KORS</div>
                             <div class="prize-name">限量版信封型卡夹</div>
@@ -198,6 +204,22 @@
                         <img class="page-bg" src="/images/page-41.jpg"/>
                         <img class="qr-code" src="/images/qr-code.jpg"/>
                         <img class="down-arrow hide" src="/images/down-arrow.png">
+                    </div>
+                </div>
+                <div class="second-chance-area hide">
+                    <div class="step step-42 zoomIn">
+                        <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
+                        <img class="gift heartBeat" src="/images/gift.png"/>
+                    </div>
+                </div>
+                <div class="second-fail-area hide">
+                    <div class="step step-43 zoomIn">
+                        <img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>
+                    </div>
+                </div>
+                <div class="tomorrow-area hide">
+                    <div class="step step-44 zoomIn">
+                        <img class="page-bg" src="/images/page-44.jpg"/>
                     </div>
                 </div>
             </div>
@@ -220,6 +242,9 @@
                     'height' : 2.24 * zoom + 'rem',
                     'left' : 1.25 * zoom + excursion + 'rem',
                     'bottom' : 1.4 * zoom + 'rem'
+                });
+                $('.gift').css({
+                    'bottom' : 4 * zoom + 'rem'
                 });
             }
             var expressionSelect = false;
@@ -266,8 +291,28 @@
                     } 
                 });
                 $('.balloon').on('click',function () {
-                    slidePage.index(4);
-                    $('.winning-area').show();
+                    $.ajax({
+                        type: 'get',
+                        url: '/prize/lucky',
+                        success: function(data) {
+                            console.log(data);
+                            slidePage.index(4);
+                            switch (data.code) {
+                                case 0:
+                                    $('.winning-area').show();
+                                    break;
+                                case 10010:
+                                    break;
+                                case 10011:
+                                    break;
+                            }
+                        }
+                    });
+                    
+                    //$('.winning-area').show();
+                    //$('.second-chance-area').show();
+                    //$('.second-fail-area').show();
+                    $('.tomorrow-area').show();
                 });
             }
             new initPage();
