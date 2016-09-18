@@ -235,6 +235,8 @@
     <script type="text/javascript" src="/js/widget/slidePage-touch.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+            var jsApiUrl = window.location.href.split('#')[0];
+                jsApiUrl = encodeURIComponent(jsApiUrl);
             var zoom = $(window).height()/lib.flexible.dpr/667;
             var excursion = (5 - ((750 * $(window).height())/(1334*lib.flexible.rem*2))) * zoom;
             if(zoom < 1){
@@ -291,11 +293,16 @@
                     } 
                 });
                 $('.balloon').on('click',function () {
+                    $('.balloon').css({
+                        '-webkit-animation' : ''
+                    });
+                    $('.balloon').animate({
+                        bottom:"30rem"
+                    },2000);
                     $.ajax({
                         type: 'get',
                         url: '/prize/lucky',
                         success: function(data) {
-                            console.log(data);
                             slidePage.index(4);
                             switch (data.code) {
                                 case 0:
@@ -308,7 +315,6 @@
                             }
                         }
                     });
-                    
                     //$('.winning-area').show();
                     //$('.second-chance-area').show();
                     //$('.second-fail-area').show();
