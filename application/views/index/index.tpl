@@ -149,13 +149,13 @@
         <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 slideDown">
-                    <img class="page-bg" style="margin: 0rem auto;" src="/images/page-1.jpg"/>
+                    <img class="page-bg" style="height:89%;margin-top:1rem" src="/images/page-1.png"/>
                     <img class="down-arrow" src="/images/down-arrow.png">
                 </div>
             </div>
             <div class="item page2">
                 <div class="step step-2 rollInLeft">
-                    <img class="page-bg" src="/images/page-2.jpg"/>
+                    <img class="page-bg" style="height:24.7%;margin-top:1.5rem" src="/images/page-2.png"/>
                 </div>
                 <div class="expression-area">
                     <div class="expression happy">
@@ -179,8 +179,8 @@
                 </div>
             </div>
             <div class="item page3">
-                <div class="step step-3 flaxLine">
-                    <img class="page-bg" src="/images/page-3.jpg"/>
+                <div class="step step-3 slideDown">
+                    <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-3.png"/>
                     <img class="balloon" src="/images/page-3/balloon.png"/>
                 </div>
             </div>
@@ -195,10 +195,15 @@
                                 北区一层N1-08
                             </div>
                         </div>
-                        <img class="page-bg" src="/images/page-4.jpg"/>
+                        <img class="page-bg" src="/images/page-41.jpg"/>
                         <img class="qr-code" src="/images/qr-code.jpg"/>
                         <img class="down-arrow hide" src="/images/down-arrow.png">
                     </div>
+                </div>
+            </div>
+            <div class="item page5">
+                <div class="step step-5 rollInRight">
+                    <img class="page-bg" src="/images/page-5.jpg"/>
                 </div>
             </div>
         </div>
@@ -209,10 +214,12 @@
     <script type="text/javascript">
     	$(document).ready(function(){
             var zoom = $(window).height()/lib.flexible.dpr/667;
-            var excursion = 5 - ((750 * $(window).height())/(1334*lib.flexible.rem*2));
+            var excursion = (5 - ((750 * $(window).height())/(1334*lib.flexible.rem*2))) * zoom;
             if(zoom < 1){
                 $('.qr-code').css({
-                    'left' : 1.25 * zoom + excursion + 'rem'
+                    'height' : 2.24 * zoom + 'rem',
+                    'left' : 1.25 * zoom + excursion + 'rem',
+                    'bottom' : 1.4 * zoom + 'rem'
                 });
             }
             var expressionSelect = false;
