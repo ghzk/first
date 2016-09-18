@@ -203,30 +203,32 @@
                         <img class="down-arrow hide" src="/images/down-arrow.png">
                     </div>
                 </div>
-                {{ if ($rest_chance == 2) }}
+                {{ if ($rest_chance > 1) }}
                     <div class="unwinning-area hide">
                         <div class="step step-42 zoomIn">
                             <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
                             <img class="gift heartBeat" src="/images/gift.png"/>
                         </div>
                     </div>
-                {{ elseif ($rest_chance == 1) }}
-                    <div class="unwinning-area hide">
-                        <div class="step step-43 zoomIn">
-                            <img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>
-                        </div>
-                    </div>
                 {{ elseif ($rest_chance == 0) }}
                     <div class="unwinning-area hide">
                         <div class="step step-44 zoomIn">
                             <img class="page-bg" src="/images/page-44.jpg"/>
+                            <img class="down-arrow hide" src="/images/down-arrow.png">
+                        </div>
+                    </div>
+                {{ else }}
+                <div class="unwinning-area hide">
+                        <div class="step step-43 zoomIn">
+                            <img class="page-bg" style="height:75.2%;float:right" src="/images/page-43.png"/>
+                            <img class="down-arrow hide" src="/images/down-arrow.png">
                         </div>
                     </div>
                 {{ /if }}
             </div>
             <div class="item page5">
                 <div class="step step-5 rollInRight">
-                    <img class="page-bg" src="/images/page-5.jpg"/>
+                    <img class="page-bg" src="/images/page-5.jpg" style="float:right" />
                 </div>
             </div>
         </div>
@@ -253,13 +255,13 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                     });
@@ -295,8 +297,8 @@
                                 break;
                             case 4:
                                 setTimeout(function () {
-                                    $('.step-4').find('.down-arrow').fadeIn();
-                                },3000);
+                                    $('.page4').find('.down-arrow').fadeIn();
+                                },2000);
                                 break;
                         }
                     },
@@ -354,13 +356,13 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: 'Giftoftheday How Are You Today?',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                         wx.onMenuShareAppMessage({
                             title: 'Giftoftheday How Are You Today?',
                             desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                     });
@@ -399,13 +401,13 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: 'Giftoftheday How Are You Today?',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                         wx.onMenuShareAppMessage({
                             title: 'Giftoftheday How Are You Today?',
                             desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: '',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
                     });
