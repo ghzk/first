@@ -27,10 +27,28 @@
                 margin: auto;
                 height: 100%;
             }
+            .balloon{
+                position: absolute;
+                right: 1rem;
+                top: 5.5rem;
+                width: 3.45rem;
+                -webkit-animation: pop 1s ease-in-out infinite;
+            }
+            @-webkit-keyframes pop{
+                0% {
+                    top: 5.5rem;
+                }
+                40% {
+                    top: 4.8rem;
+                }
+                100% {
+                    top: 5.5rem;
+                }
+            }
         </style>
     </head>
     <body>
-        <div class="slidePage-container" id="slidePage-container">
+        <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 slideDown">
                     <img class="page-bg" src="/images/page-1.jpg"/>
@@ -44,27 +62,33 @@
             <div class="item page3">
                 <div class="step step-3 flaxLine">
                     <img class="page-bg" src="/images/page-3.jpg"/>
+                    <img class="balloon" src="/images/page-3/balloon.png"/>
                 </div>
             </div>
         </div>
     </body>
     {{ include file="includeJs.tpl" }}
-    <script type="text/javascript" src="/js/widget/slidePage.min.js"></script>
+    <script type="text/javascript" src="/js/widget/slidePage.js"></script>
+    <script type="text/javascript" src="/js/widget/slidePage-touch.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
             var initPage = function () {
                 slidePage.init({
                     'index' : 1,
-                    'after' : function(index,direction,target){},
+                    'after' : function(index,direction,target){
+                        
+                    },
                     'speed' : 700,
-                    'refresh'  : true,
-                    'useAnimation' : true
+                    'refresh'  : false,
+                    'unSlidePageList' : [2,3]
                 });
+                $('.slidePage-container').show();
                 new bindBtnFunc();
             }
             var bindBtnFunc = function () {
                 $('.step-2').on('click',function () {
-                    slidePage.next();
+                    slidePage.index(3);
+                    return false;
                 });
             }
             new initPage();
