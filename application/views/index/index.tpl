@@ -242,7 +242,6 @@
                 type: 'get',
                 url: '/tool/wxsign?url='+jsApiUrl,
                 success: function(data) {
-                    data = $.parseJSON(data);
                     wx.config({
                         debug: false,
                         appId: data.result.data.appId,
