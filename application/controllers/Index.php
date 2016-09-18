@@ -12,6 +12,7 @@ class IndexController extends Base
     public function indexAction()
     {
         $arrInput = $this->arrInput;
+        $strOpenId = $arrInput['openid'];
         // @todo: params
         // source
 
@@ -21,6 +22,11 @@ class IndexController extends Base
             'openid' => $arrInput['openid'],
             'source' => isset($arrInput['source']) ? $arrInput['source'] : null,
         ]);
+
+
+        // 剩余抽奖次数
+        $intRestChance = ActivityModel::Instance()->getUserRestChance($strOpenId);
+        $this->getView()->assign('rest_chance', $intRestChance);
 
         $this->getView()->assign("body", "Hello Wrold<br/>");
     }

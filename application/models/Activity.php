@@ -158,6 +158,25 @@ class ActivityModel extends Base
         return $rand < $intOdds ? true : false;
     }
 
+
+    /**
+     * 获取用户剩余抽奖次数
+     *
+     * @param $strOpenId
+     *
+     * @return int
+     */
+    public function getUserRestChance($strOpenId)
+    {
+        // 获取用户参与次数
+        $arrJoinList = $this->getUserTodayJoinList($strOpenId);
+        $times = count($arrJoinList);
+
+        $times = min($times, self::MAX_JOIN_TIMES);
+
+        return self::MAX_JOIN_TIMES - $times;
+    }
+
     /**
      * 抽奖
      *
@@ -172,10 +191,9 @@ class ActivityModel extends Base
         $strOpenId = $arrInput['openid'];
         $arrErrorMap = Config::get_app_error();
 
-        // 获取用户参与次数
-        $arrJoinList = $this->getUserTodayJoinList($strOpenId);
-        $times = count($arrJoinList);
-        if ($times >= self::MAX_JOIN_TIMES) {
+        // 获取用户剩余抽奖次数
+        $intRestChance = $this->getUserRestChance($strOpenId);
+        if ($intRestChance <= 0) {
             throw new Exception($arrErrorMap[10011], 10011);
         }
 
