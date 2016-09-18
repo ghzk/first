@@ -207,7 +207,7 @@
                     <div class="unwinning-area hide">
                         <div class="step step-42 zoomIn">
                             <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
-                            <img class="gift heartBeat" src="/images/gift.png"/>
+                            <img class="gift hide" src="/images/gift.png"/>
                         </div>
                     </div>
                 {{ elseif ($rest_chance == 0) }}
@@ -345,6 +345,10 @@
                                         break;
                                     case 10010:
                                         $('.unwinning-area').show();
+                                        setTimeout(function(){
+                                            $('.gift').show();
+                                            $('.gift').addClass('heartBeat');
+                                        },2000);
                                         break;
                                     case 10011:
                                         $('.unwinning-area').show();
