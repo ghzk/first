@@ -296,7 +296,7 @@
                             case 4:
                                 setTimeout(function () {
                                     $('.step-4').find('.down-arrow').fadeIn();
-                                },3000)
+                                },3000);
                                 break;
                         }
                     },
