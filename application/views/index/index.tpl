@@ -238,6 +238,7 @@
     <script type="text/javascript" src="/js/widget/slidePage-touch.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
+            var submitSign = true;
             var jsApiUrl = window.location.href.split('#')[0];
                 jsApiUrl = encodeURIComponent(jsApiUrl);
             $.ajax({
@@ -323,20 +324,69 @@
                     } 
                 });
                 $('.balloon').on('click',function () {
-                    $('.balloon').css({
-                        '-webkit-animation' : 'none'
-                    });
-                    $('.balloon').animate({
-                        bottom: '30rem'
-                    },2000);
-                    $.ajax({
-                        type: 'get',
-                        url: '/prize/lucky',
-                        success: function(data) {
-                            setTimeout(function () {
-                                slidePage.index(4);
+                    if(submitSign == true){
+                        submitSign = false;
+                        $('.balloon').css({
+                            '-webkit-animation' : 'none'
+                        });
+                        $('.balloon').animate({
+                            bottom: '30rem'
+                        },2000);
+                        $.ajax({
+                            type: 'get',
+                            url: '/prize/lucky',
+                            success: function(data) {
+                                submitSign = true;
+                                setTimeout(function () {
+                                    slidePage.index(4);
+                                    switch (data.code) {
+                                        case 0:
+                                            $('.winning-area').show();
+                                            $('.prize-name').html(data.result.prize.product);
+                                            $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
+                                            //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
+                                            $('.qr-code').attr('src',data.result.qrcode);
+                                            break;
+                                        case 10010:
+                                            $('.unwinning-area').show();
+                                            setTimeout(function(){
+                                                $('.gift').show();
+                                                $('.gift').addClass('heartBeat');
+                                            },400);
+                                            break;
+                                        case 10011:
+                                            $('.unwinning-area').show();
+                                            break;
+                                    }
+                                },1000);
+                            }
+                        });
+                        wx.ready(function(){
+                            wx.onMenuShareTimeline({
+                                title: 'Giftoftheday How Are You Today?',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            });
+                            wx.onMenuShareAppMessage({
+                                title: 'Giftoftheday How Are You Today?',
+                                desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            });
+                        });
+                    }
+                });
+                $('.gift').on('click',function () {
+                    if(submitSign == true){
+                        submitSign = false;
+                        $.ajax({
+                            type: 'get',
+                            url: '/prize/lucky',
+                            success: function(data) {
+                                submitSign = true;
                                 switch (data.code) {
                                     case 0:
+                                        $('.unwinning-area').hide();
                                         $('.winning-area').show();
                                         $('.prize-name').html(data.result.prize.product);
                                         $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
@@ -344,77 +394,36 @@
                                         $('.qr-code').attr('src',data.result.qrcode);
                                         break;
                                     case 10010:
-                                        $('.unwinning-area').show();
-                                        setTimeout(function(){
-                                            $('.gift').show();
-                                            $('.gift').addClass('heartBeat');
-                                        },2000);
+                                        var html = 
+                                            '<div class="step step-43 zoomIn">'+
+                                                '<img class="page-bg" style="height:75.2%;float:right" src="/images/page-43.png"/>'+
+                                            '</div>';
+                                        $('.unwinning-area').html(html);
                                         break;
                                     case 10011:
-                                        $('.unwinning-area').show();
+                                        var html = 
+                                            '<div class="step step-44 zoomIn">'+
+                                                '<img class="page-bg" src="/images/page-44.jpg"/>'+
+                                            '</div>';
+                                        $('.unwinning-area').html(html);
                                         break;
                                 }
-                            },1000);
-                        }
-                    });
-                    wx.ready(function(){
-                        wx.onMenuShareTimeline({
-                            title: 'Giftoftheday How Are You Today?',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
-                        });
-                        wx.onMenuShareAppMessage({
-                            title: 'Giftoftheday How Are You Today?',
-                            desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
-                        });
-                    });
-                });
-                $('.gift').on('click',function () {
-                    $.ajax({
-                        type: 'get',
-                        url: '/prize/lucky',
-                        success: function(data) {
-                            switch (data.code) {
-                                case 0:
-                                    $('.unwinning-area').hide();
-                                    $('.winning-area').show();
-                                    $('.prize-name').html(data.result.prize.product);
-                                    $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
-                                    //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
-                                    $('.qr-code').attr('src',data.result.qrcode);
-                                    break;
-                                case 10010:
-                                    var html = 
-                                        '<div class="step step-43 zoomIn">'+
-                                            '<img class="page-bg" style="height:75.2%;" src="/images/page-43.png"/>'+
-                                        '</div>';
-                                    $('.unwinning-area').html(html);
-                                    break;
-                                case 10011:
-                                    var html = 
-                                        '<div class="step step-44 zoomIn">'+
-                                            '<img class="page-bg" src="/images/page-44.jpg"/>'+
-                                        '</div>';
-                                    $('.unwinning-area').html(html);
-                                    break;
                             }
-                        }
-                    });
-                    wx.ready(function(){
-                        wx.onMenuShareTimeline({
-                            title: 'Giftoftheday How Are You Today?',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                         });
-                        wx.onMenuShareAppMessage({
-                            title: 'Giftoftheday How Are You Today?',
-                            desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        wx.ready(function(){
+                            wx.onMenuShareTimeline({
+                                title: 'Giftoftheday How Are You Today?',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            });
+                            wx.onMenuShareAppMessage({
+                                title: 'Giftoftheday How Are You Today?',
+                                desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            });
                         });
-                    });
+                    }
                 });
             }
             new initPage();
