@@ -238,6 +238,34 @@
     	$(document).ready(function(){
             var jsApiUrl = window.location.href.split('#')[0];
                 jsApiUrl = encodeURIComponent(jsApiUrl);
+            $.ajax({
+                type: 'get',
+                url: '/tool/wxsign?url='+jsApiUrl,
+                success: function(data) {
+                    data = $.parseJSON(data);
+                    wx.config({
+                        debug: false,
+                        appId: data.result.data.appId,
+                        timestamp: data.result.data.timestamp,
+                        nonceStr: data.result.data.nonceStr,
+                        signature: data.result.data.signature,
+                        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage']
+                    });
+                    wx.ready(function(){
+                        wx.onMenuShareTimeline({
+                            title: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
+                        wx.onMenuShareAppMessage({
+                            title: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                            desc: 'Giftoftheday How Are You Today?',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
+                    });
+                }
+            });
             var zoom = $(window).height()/lib.flexible.dpr/667;
             var excursion = (5 - ((750 * $(window).height())/(1334*lib.flexible.rem*2))) * zoom;
             if(zoom < 1){
@@ -324,6 +352,19 @@
                             },1000);
                         }
                     });
+                    wx.ready(function(){
+                        wx.onMenuShareTimeline({
+                            title: 'Giftoftheday How Are You Today?',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
+                        wx.onMenuShareAppMessage({
+                            title: 'Giftoftheday How Are You Today?',
+                            desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
+                    });
                 });
                 $('.gift').on('click',function () {
                     $.ajax({
@@ -355,6 +396,19 @@
                                     break;
                             }
                         }
+                    });
+                    wx.ready(function(){
+                        wx.onMenuShareTimeline({
+                            title: 'Giftoftheday How Are You Today?',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
+                        wx.onMenuShareAppMessage({
+                            title: 'Giftoftheday How Are You Today?',
+                            desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                            link: '',
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                        });
                     });
                 });
             }
