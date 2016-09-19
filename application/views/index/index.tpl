@@ -25,6 +25,24 @@
             .page-bg{
                 display: block;
                 margin: 0rem auto 0rem auto;
+            }
+            .step-1 .page-bg{
+                width: 8rem;
+                margin-top: 1rem;
+            }
+            .step-2 .page-bg{
+                width: 7.95rem;
+                height: 4.4rem;
+                margin-top: 1.5rem;
+            }
+            .step-3 .page-bg{
+                width: 8.49rem;
+                margin-top: 1rem;
+            }
+            .step-4 .page-bg{
+                height: 100%;
+            }
+            .step-5 .page-bg{
                 height: 100%;
             }
             .down-arrow{
@@ -51,14 +69,15 @@
                 position: absolute;
                 width: 10rem;
                 height: 8.5rem;
-                bottom: -9rem;
+                left: -10rem;
+                top: 6.5rem;
             }
             .expression{
                 position: absolute;
                 height: 1.65rem;
             }
             .expression-image{
-                height: 100%;
+                height: 1.65rem;
             }
             .happy{
                 left: 0.8rem;
@@ -106,19 +125,24 @@
                 width: 100%;
                 height: 100%;
             }
+            .winning-title{
+                position: absolute;
+                top: 1.8rem;
+                left: 50%;
+                margin-left: -4.22rem;
+                width: 8.44rem;
+            }
             .prize-area{
                 width: 10rem;
-                top: 5rem;
+                top: 4.2rem;
                 position: absolute;
                 padding: 0rem 0.8rem;
             }
             .prize-brand{
                 font-size: 1rem;
                 font-weight: 900;
-                width: 8rem;
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+                height: 1.6rem;
+                display: block;
             }
             .prize-name{
                 font-size: 0.6rem;
@@ -137,17 +161,73 @@
                 line-height: 0.7rem;
                 font-weight: 600;
             }
+            .winning-bottom{
+                position: absolute;
+                bottom: 1.5rem;
+                left: 50%;
+                margin-left: -4.175rem;
+                width: 8.35rem;
+            }
             .qr-code{
                 position: absolute;
-                height: 2.24rem;
-                left: 1.25rem;
-                bottom: 1.4rem;
+                height: 2.3rem;
+                left: 1.18rem;
+                bottom: 1.6rem;
+            }
+            .unwinning-title{
+                position: absolute;
+                top: 1.8rem;
+                left: 50%;
+                margin-left: -4.24rem;
+                width: 8.48rem;
             }
             .gift{
                 position: absolute;
-                height: 22.9%;
+                width: 3.45rem;
                 right: 0.8rem;
-                bottom: 4rem;
+                bottom: 3rem;
+            }
+            .unwinning-bottom{
+                position: absolute;
+                bottom: 3rem;
+                left: 50%;
+                margin-left: -4.24rem;
+                width: 8.48rem;
+            }
+            .unwinning-rightTop43{
+                position: absolute;
+                right: 0rem;
+                top: 0rem;
+                width: 3.1rem;
+            }
+            .unwinning-center43{
+                position: absolute;
+                left: 50%;
+                margin-left: -4rem;
+                top: 3rem;
+                width: 8rem;
+            }
+            .unwinning-rightTop44{
+                position: absolute;
+                right: 0rem;
+                top: 0rem;
+                width: 4.52rem;
+            }
+            .unwinning-center44{
+                height: 16rem;
+                margin: auto;
+                display: block;
+            }
+            .page5-center{
+                height: 16rem;
+                margin: 0.8rem auto;
+                display: block;
+            }
+            .page5-rightTop{
+                position: absolute;
+                right: 0rem;
+                top: 0rem;
+                width: 4.52rem;
             }
         </style>
     </head>
@@ -155,13 +235,13 @@
         <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 slideDown">
-                    <img class="page-bg" style="height:89%;margin-top:1rem" src="/images/page-1.png"/>
+                    <img class="page-bg" src="/images/page-1.png"/>
                     <img class="down-arrow" src="/images/down-arrow.png">
                 </div>
             </div>
             <div class="item page2">
                 <div class="step step-2 rollInLeft">
-                    <img class="page-bg" style="height:24.7%;margin-top:1.5rem" src="/images/page-2.png"/>
+                    <img class="page-bg" src="/images/page-2.png"/>
                 </div>
                 <div class="expression-area">
                     <div class="expression happy">
@@ -186,49 +266,44 @@
             </div>
             <div class="item page3">
                 <div class="step step-3 slideDown">
-                    <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-3.png"/>
+                    <img class="page-bg" src="/images/page-3.png"/>
                     <img class="balloon" src="/images/page-3/balloon.png"/>
                 </div>
             </div>
             <div class="item page4">
-                <div class="winning-area hide">
-                    <div class="step step-41 zoomIn">
+                <div class="step step-4 zoomIn">
+                    <div class="winning-area hide">
+                        <img class="winning-title" src="/images/page-4/winning-title.png"/>
                         <div class="prize-area">
                             <img class="prize-brand" src=""/>
                             <div class="prize-name"></div>
                             <div class="prize-location"></div>
                         </div>
-                        <img class="page-bg" src="/images/page-41.jpg"/>
+                        <img class="winning-bottom" src="/images/page-4/winning-bottom.png"/>
                         <img class="qr-code" src=""/>
                         <img class="down-arrow hide" src="/images/down-arrow.png">
                     </div>
+                    <div class="unwinning-area hide">
+                        {{ if ($rest_chance > 1) }}
+                        <img class="unwinning-title" src="/images/page-4/unwinning-title.png"/>
+                        <img class="gift heartBeat" src="/images/page-4/gift.png"/>
+                        <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png"/>
+                        {{ elseif ($rest_chance == 0) }}
+                        <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png"/>
+                        <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png">
+                        {{ else }}
+                        <img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>
+                        <img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png">
+                        {{ /if }}
+                    </div>
                 </div>
-                {{ if ($rest_chance > 1) }}
-                    <div class="unwinning-area hide">
-                        <div class="step step-42 zoomIn">
-                            <img class="page-bg" style="height:64.2%;margin-top:1.5rem" src="/images/page-42.png"/>
-                            <img class="gift hide" src="/images/gift.png"/>
-                        </div>
-                    </div>
-                {{ elseif ($rest_chance == 0) }}
-                    <div class="unwinning-area hide">
-                        <div class="step step-44 zoomIn">
-                            <img class="page-bg" src="/images/page-44.jpg"/>
-                            <img class="down-arrow hide" src="/images/down-arrow.png">
-                        </div>
-                    </div>
-                {{ else }}
-                <div class="unwinning-area hide">
-                        <div class="step step-43 zoomIn">
-                            <img class="page-bg" style="height:75.2%;float:right" src="/images/page-43.png"/>
-                            <img class="down-arrow hide" src="/images/down-arrow.png">
-                        </div>
-                    </div>
-                {{ /if }}
             </div>
             <div class="item page5">
                 <div class="step step-5 rollInRight">
-                    <img class="page-bg" src="/images/page-5.jpg" style="float:right" />
+                    <img class="page5-rightTop" src="/images/page-4/unwinning-rightTop44.png"/>
+                    <img class="page5-center" src="/images/page-5/page5-center.png" />
                 </div>
             </div>
         </div>
@@ -268,18 +343,6 @@
                     });
                 }
             });
-            var zoom = $(window).height()/lib.flexible.dpr/667;
-            var excursion = (5 - ((750 * $(window).height())/(1334*lib.flexible.rem*2))) * zoom;
-            if(zoom < 1){
-                $('.qr-code').css({
-                    'height' : 2.24 * zoom + 'rem',
-                    'left' : 1.25 * zoom + excursion + 'rem',
-                    'bottom' : 1.4 * zoom + 'rem'
-                });
-                $('.gift').css({
-                    'bottom' : 4 * zoom + 'rem'
-                });
-            }
             var expressionSelect = false;
             var initPage = function () {
                 slidePage.init({
@@ -291,9 +354,9 @@
                             case 2:
                                 setTimeout(function () {
                                     $('.expression-area').animate({
-                                        bottom:"0.6rem"
+                                        'left' : '0rem'
                                     },600);
-                                },1200);
+                                },1000);
                             case 3:
                                 break;
                             case 4:
@@ -345,15 +408,11 @@
                                             $('.winning-area').show();
                                             $('.prize-name').html(data.result.prize.product);
                                             $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
-                                            //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
+                                            $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             break;
                                         case 10010:
                                             $('.unwinning-area').show();
-                                            setTimeout(function(){
-                                                $('.gift').show();
-                                                $('.gift').addClass('heartBeat');
-                                            },400);
                                             break;
                                         case 10011:
                                             $('.unwinning-area').show();
@@ -362,7 +421,6 @@
                                 },1000);
                             }
                         });
-                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
@@ -376,6 +434,7 @@
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                             });
                         });
+                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                     }
                 });
                 $('.gift').on('click',function () {
@@ -392,27 +451,26 @@
                                         $('.winning-area').show();
                                         $('.prize-name').html(data.result.prize.product);
                                         $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
-                                        //$('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
+                                        $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                         $('.qr-code').attr('src',data.result.qrcode);
                                         break;
                                     case 10010:
                                         var html = 
-                                            '<div class="step step-43 zoomIn">'+
-                                                '<img class="page-bg" style="height:75.2%;float:right" src="/images/page-43.png"/>'+
-                                            '</div>';
+                                            '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>'+
+                                            '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>'+
+                                            '<img class="down-arrow hide" src="/images/down-arrow.png">'
                                         $('.unwinning-area').html(html);
                                         break;
                                     case 10011:
                                         var html = 
-                                            '<div class="step step-44 zoomIn">'+
-                                                '<img class="page-bg" src="/images/page-44.jpg"/>'+
-                                            '</div>';
+                                            '<img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png"/>'+
+                                            '<img class="unwinning-center44" src="/images/page-4/unwinning-center44.png"/>'+
+                                            '<img class="down-arrow hide" src="/images/down-arrow.png">';
                                         $('.unwinning-area').html(html);
                                         break;
                                 }
                             }
                         });
-                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
@@ -426,6 +484,7 @@
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
                             });
                         });
+                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                     }
                 });
             }
