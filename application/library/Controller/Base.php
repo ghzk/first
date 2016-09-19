@@ -43,11 +43,6 @@ class Base extends Controller
     protected function setWxUser()
     {
         if ($this->needWxAuth) {
-            // @todo: mock
-            $this->arrInput['openid'] = 'o1hKav1CL_LDiQALJOe8qTvBCMYw' . time();
-
-            return;
-
             $arrWxConf = Config::get_app_wechat();
             if (empty($arrWxConf)) {
                 throw new Exception('wechat config not found.');
