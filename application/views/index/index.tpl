@@ -406,9 +406,11 @@
                     if(submitSign == true){
                         submitSign = false;
                         $('.balloon').removeClass('balloon-animation');
-                        $('.balloon').animate({
-                            'bottom' : '30rem'
-                        },2000);
+                        setTimeout(function () {
+                            $('.balloon').animate({
+                                'bottom' : '30rem'
+                            },800);    
+                        },100);
                         $.ajax({
                             type: 'get',
                             url: '/prize/lucky',
