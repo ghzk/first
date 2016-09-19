@@ -11,31 +11,36 @@ class Auth
 
     public function __construct($options)
     {
+        session_start();
         $this->options = $options;
         $this->wxoauth();
-        session_start();
     }
 
     public function wxoauth()
     {
         $scope = 'snsapi_base';
         $code = isset($_GET['code']) ? $_GET['code'] : '';
-        $token_time = isset($_SESSION['token_time']) ? $_SESSION['token_time'] : 0;
-        if (!$code && isset($_SESSION['open_id']) && isset($_SESSION['user_token']) && $token_time > time() - 3600) {
+
+        if (!$code && isset($_SESSION['open_id'])) {
             $this->open_id = $_SESSION['open_id'];
 
             return $this->open_id;
         } else {
             $options = array(
-                'token'     => $this->options["token"], //填写你设定的key
-                'appid'     => $this->options["appid"], //填写高级调用功能的app id
-                'appsecret' => $this->options["appsecret"] //填写高级调用功能的密钥
+                'token'     => $this->options['token'], //填写你设定的key
+                'appid'     => $this->options['appid'], //填写高级调用功能的app id
+                'appsecret' => $this->options['appsecret'] //填写高级调用功能的密钥
             );
             $we_obj = new Wechat($options);
             if ($code) {
                 $json = $we_obj->getOauthAccessToken();
                 if (!$json) {
                     unset($_SESSION['wx_redirect']);
+
+                    // hack
+                    unset($_GET['code']);
+                    return $this->wxoauth();
+
                     die('获取用户授权失败，请重新确认');
                 }
                 $_SESSION['open_id'] = $this->open_id = $json["openid"];

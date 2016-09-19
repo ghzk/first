@@ -27,7 +27,7 @@ class CheckController extends Base
     public function indexAction()
     {
         $arrInput = $this->arrInput;
-        $arrInput = $this->_checkParams($arrInput);
+//        $arrInput = $this->_checkParams($arrInput);
 
         // display...
     }
@@ -65,28 +65,31 @@ class CheckController extends Base
         $intCode = intval($arrInput['code']);
         $arrErrorMap = Config::get_app_error();
 
-        $errCodeInvalidParam = 10020;
+        $errCodeInvalidQrCode = 10020;
         $errCodeExpQrCode = 10021;
         $errCodeStatusUnWin = 10022;
         $errCodeStatusChecked = 10023;
         $errCodeInValidCode = 10024;
 
         if (empty($intActId) || empty($strOpenId)) {
-            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+            throw new Exception($arrErrorMap[$errCodeInvalidQrCode], $errCodeInvalidQrCode);
         }
         if ($bolCheckCode && empty($intCode)) {
-            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+            throw new Exception($arrErrorMap[$errCodeInValidCode], $errCodeInValidCode);
         }
 
 
         $arrAct = ActivityModel::Instance()->getActById($intActId);
-        $intTime = strtotime($arrAct['create_time']);
         if (empty($arrAct)) {
-            throw new Exception($arrErrorMap[$errCodeInvalidParam], $errCodeInvalidParam);
+            throw new Exception($arrErrorMap[$errCodeInvalidQrCode], $errCodeInvalidQrCode);
         }
-
-        if ($strOpenId !== $arrAct['openid'] || (time() - $intTime) > self::EXP_TIME) {
-            // 伪造或二维码已过期
+        if ($strOpenId !== $arrAct['openid']) {
+            // 伪造
+            throw new Exception($arrErrorMap[$errCodeInvalidQrCode], $errCodeInvalidQrCode);
+        }
+        $intTime = strtotime($arrAct['create_time']);
+        if ((time() - $intTime) > self::EXP_TIME) {
+            // 二维码已过期
             throw new Exception($arrErrorMap[$errCodeExpQrCode], $errCodeExpQrCode);
         }
 
