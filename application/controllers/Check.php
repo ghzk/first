@@ -78,7 +78,6 @@ class CheckController extends Base
             throw new Exception($arrErrorMap[$errCodeInValidCode], $errCodeInValidCode);
         }
 
-
         $arrAct = ActivityModel::Instance()->getActById($intActId);
         if (empty($arrAct)) {
             throw new Exception($arrErrorMap[$errCodeInvalidQrCode], $errCodeInvalidQrCode);
