@@ -186,7 +186,7 @@
                 position: absolute;
                 width: 3.45rem;
                 right: 0.8rem;
-                bottom: 3rem;
+                bottom: 2rem;
             }
             .unwinning-bottom{
                 position: absolute;
@@ -237,7 +237,7 @@
             <div class="item page1">
                 <div class="step step-1 slideDown">
                     <img class="page-bg" src="/images/page-1.png"/>
-                    <img class="down-arrow" src="/images/down-arrow.png">
+                    <img class="down-arrow hide" src="/images/down-arrow.png">
                 </div>
             </div>
             <div class="item page2">
@@ -346,6 +346,9 @@
             });
             var expressionSelect = false;
             var initPage = function () {
+                setTimeout(function () {
+                    $('.step-1 .down-arrow').fadeIn();
+                },2000);
                 slidePage.init({
                     'index' : 1,
                     'after' : function(index,direction,target){
@@ -358,12 +361,16 @@
                                         'left' : '0rem'
                                     },600);
                                 },1000);
+                                $('.unwinning-area').hide();
                             case 3:
                                 break;
                             case 4:
-                                setTimeout(function () {
-                                    $('.page4').find('.down-arrow').fadeIn();
-                                },2000);
+                                $('.balloon').css({
+                                    '-webkit-animation' : 'pop 2s ease-in-out infinite'
+                                });
+                                $('.balloon').animate({
+                                    bottom: '1rem'
+                                },200);
                                 break;
                         }
                     },
@@ -411,12 +418,21 @@
                                             $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             $('.qr-code').attr('src',data.result.qrcode);
+                                            setTimeout(function () {
+                                                $('.winning-area').find('.down-arrow').fadeIn();
+                                            },2000);
                                             break;
                                         case 10010:
                                             $('.unwinning-area').show();
+                                            setTimeout(function () {
+                                                $('.unwinning-area').find('.down-arrow').fadeIn();
+                                            },2000);
                                             break;
                                         case 10011:
                                             $('.unwinning-area').show();
+                                            setTimeout(function () {
+                                                $('.unwinning-area').find('.down-arrow').fadeIn();
+                                            },2000);
                                             break;
                                     }
                                 },1000);
@@ -439,54 +455,12 @@
                     }
                 });
                 $('.gift').on('click',function () {
-                    if(submitSign == true){
-                        submitSign = false;
-                        $.ajax({
-                            type: 'get',
-                            url: '/prize/lucky',
-                            success: function(data) {
-                                submitSign = true;
-                                switch (data.code) {
-                                    case 0:
-                                        $('.unwinning-area').hide();
-                                        $('.winning-area').show();
-                                        $('.prize-name').html(data.result.prize.product);
-                                        $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
-                                        $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
-                                        $('.qr-code').attr('src',data.result.qrcode);
-                                        break;
-                                    case 10010:
-                                        var html = 
-                                            '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>'+
-                                            '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>'+
-                                            '<img class="down-arrow hide" src="/images/down-arrow.png">'
-                                        $('.unwinning-area').html(html);
-                                        break;
-                                    case 10011:
-                                        var html = 
-                                            '<img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png"/>'+
-                                            '<img class="unwinning-center44" src="/images/page-4/unwinning-center44.png"/>'+
-                                            '<img class="down-arrow hide" src="/images/down-arrow.png">';
-                                        $('.unwinning-area').html(html);
-                                        break;
-                                }
-                            }
-                        });
-                        wx.ready(function(){
-                            wx.onMenuShareTimeline({
-                                title: 'Giftoftheday How Are You Today?',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
-                            });
-                            wx.onMenuShareAppMessage({
-                                title: 'Giftoftheday How Are You Today?',
-                                desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
-                            });
-                        });
-                        _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
-                    }
+                    slidePage.index(2);
+                    var html = 
+                        '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>'+
+                        '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>'+
+                        '<img class="down-arrow hide" src="/images/down-arrow.png">';
+                    $('.unwinning-area').html(html);
                 });
             }
             new initPage();
