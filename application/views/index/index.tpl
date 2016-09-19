@@ -142,6 +142,7 @@
                 font-size: 1rem;
                 font-weight: 900;
                 height: 1.6rem;
+                max-width: 6rem;
                 display: block;
             }
             .prize-name{
