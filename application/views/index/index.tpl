@@ -362,15 +362,21 @@
                                     },600);
                                 },1000);
                                 $('.unwinning-area').hide();
+                                break;
                             case 3:
+                                setTimeout(function () {
+                                    $('.expression-area').css({
+                                        'left' : '-10rem'
+                                    });
+                                },1000);
                                 break;
                             case 4:
                                 $('.balloon').css({
                                     '-webkit-animation' : 'pop 2s ease-in-out infinite'
                                 });
-                                $('.balloon').animate({
+                                $('.balloon').css({
                                     bottom: '1rem'
-                                },200);
+                                });
                                 break;
                         }
                     },
