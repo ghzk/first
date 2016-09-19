@@ -108,6 +108,8 @@
                 right: 0.4rem;
                 bottom: 1rem;
                 width: 3.45rem;
+            }
+            .balloon-animation{
                 -webkit-animation: pop 2s ease-in-out infinite;
             }
             @-webkit-keyframes pop{
@@ -153,6 +155,7 @@
                 padding: 0.1rem;
                 font-weight: 900;
                 margin-top: 0.3rem;
+                max-width: 6.5rem;
             }
             .prize-location{
                 float: left;
@@ -268,7 +271,7 @@
             <div class="item page3">
                 <div class="step step-3 slideDown">
                     <img class="page-bg" src="/images/page-3.png"/>
-                    <img class="balloon" src="/images/page-3/balloon.png"/>
+                    <img class="balloon balloon-animation" src="/images/page-3/balloon.png"/>
                 </div>
             </div>
             <div class="item page4">
@@ -371,11 +374,9 @@
                                 },1000);
                                 break;
                             case 4:
+                                $('.balloon').addClass('balloon-animation');
                                 $('.balloon').css({
-                                    '-webkit-animation' : 'pop 2s ease-in-out infinite'
-                                });
-                                $('.balloon').css({
-                                    bottom: '1rem'
+                                    'bottom' : '1rem'
                                 });
                                 break;
                         }
@@ -404,11 +405,9 @@
                 $('.balloon').on('click',function () {
                     if(submitSign == true){
                         submitSign = false;
-                        $('.balloon').css({
-                            '-webkit-animation' : 'none'
-                        });
+                        $('.balloon').removeClass('balloon-animation');
                         $('.balloon').animate({
-                            bottom: '30rem'
+                            'bottom' : '30rem'
                         },2000);
                         $.ajax({
                             type: 'get',
