@@ -83,7 +83,7 @@
                                     code : code
                                 },
                                 success: function(data) {
-                                    var submitSign = true;
+                                    submitSign = true;
                                     if(data.code == 0){
                                         alert('二维码校验成功，请兑奖');
                                     }else{
