@@ -31,7 +31,11 @@ class Base extends Controller
      */
     public function init()
     {
-        $this->arrInput = $this->getRequest()->getQuery();
+        $arrInputGet = $this->getRequest()->getQuery();
+        $arrInputPost = $this->getRequest()->getPost();
+        $arrInputGet = is_array($arrInputGet) ? $arrInputGet : [];
+        $arrInputPost = is_array($arrInputPost) ? $arrInputPost : [];
+        $this->arrInput = array_merge($arrInputGet, $arrInputPost);
 
         $this->setWxUser();
     }

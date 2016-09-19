@@ -28,6 +28,10 @@ class ActivityModel extends Base
 //    const MAX_JOIN_TIMES = 2;
     const MAX_JOIN_TIMES = 200;
 
+    // 累计中奖次数上限, 则降低中奖概率
+//    const MAX_WINED_TIMES_FALLING = 4;
+    const MAX_WINED_TIMES_FALLING = 100;
+
     // 中奖概率
     public static $defaultPrizeOdds = 50;
 
@@ -75,6 +79,25 @@ class ActivityModel extends Base
             ->where('openid', '=', $strOpenId)
             ->where('create_time', '>', $todayTime['start'])
             ->where('create_time', '<', $todayTime['end'])
+            ->get();
+
+        return $arrList;
+    }
+
+    /**
+     * 获取某个用户参与记录
+     *
+     * @param $strOpenId
+     *
+     * @return array|static[]
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getUserJoinList($strOpenId)
+    {
+        $arrList = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->select('*')
+            ->where('openid', '=', $strOpenId)
             ->get();
 
         return $arrList;
@@ -179,6 +202,45 @@ class ActivityModel extends Base
     }
 
     /**
+     * 获取用户中奖概率
+     *
+     * @param $strOpenId
+     *
+     * @return int
+     */
+    public function getUserOdds($strOpenId)
+    {
+        // 中奖规则:
+        //  每人每天抽奖2次上限。
+        //  默认中奖率 50%;
+        //  累计抽奖4次, 中奖率为30%;
+        //  累计中奖4次, 中奖率为0%;
+
+        $arrJoinList = $this->getUserJoinList($strOpenId);
+
+        $intOdds = self::$defaultPrizeOdds;
+        if (!empty($arrJoinList)) {
+            if (count($arrJoinList) >= self::MAX_WINED_TIMES_FALLING) {
+                $intOdds = 30;
+            }
+
+            $intWinedTimes = 0;
+            foreach ($arrJoinList as $item) {
+                if ($item['status'] > self::STATUS_NOT_WIN) {
+                    $intWinedTimes++;
+                }
+            }
+
+            if ($intWinedTimes >= self::MAX_WINED_TIMES_FALLING) {
+                $intOdds = 0;
+            }
+        }
+
+        return $intOdds;
+    }
+
+
+    /**
      * 抽奖
      *
      * @param $arrInput
@@ -197,6 +259,7 @@ class ActivityModel extends Base
         if ($intRestChance <= 0) {
             throw new Exception($arrErrorMap[10011], 10011);
         }
+        $intOdds = $this->getUserOdds($strOpenId);
 
         $bolWinRes = false;     // 是否中奖
         $intPrizeId = 0;
@@ -205,7 +268,7 @@ class ActivityModel extends Base
         try {
             $app->beginTransaction();
 
-            $bolWin = $this->_checkWin();
+            $bolWin = $this->_checkWin($intOdds);
             $intPrizeId = PrizeModel::Instance()->getWinPrizeId();
             if ($bolWin && $intPrizeId) {
                 // 添加获奖记录
