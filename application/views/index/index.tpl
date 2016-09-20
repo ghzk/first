@@ -42,7 +42,13 @@
             .step-4 .page-bg{
                 height: 100%;
             }
+            .step-5{
+                background-color: #fff;
+            }
             .step-5 .page-bg{
+                height: 100%;
+            }
+            .step-6 .page-bg{
                 height: 100%;
             }
             .down-arrow{
@@ -79,6 +85,24 @@
             .expression-image{
                 height: 1.65rem;
             }
+            .expression-click-img{
+                position: absolute;
+                top: 1rem;
+                right: 0.6rem;
+                width: 1.17rem;
+                -webkit-animation: expressionClick 1s ease-in-out infinite;
+            }
+            @-webkit-keyframes expressionClick{
+                0% {
+                    right: 0.6rem;
+                }
+                40% {
+                    right: 1rem;
+                }
+                100% {
+                    right: 0.6rem;
+                }
+            }
             .happy{
                 left: 0.8rem;
                 top: 0.4rem;
@@ -92,21 +116,21 @@
                 top: 6.2rem
             }
             .adorable{
-                left: 5.8rem;
+                left: 4.6rem;
                 top: 0.4rem;
             }
             .upset{
-                left: 5.8rem;
+                left: 4.6rem;
                 top: 3.2rem;
             }
             .terrible{
-                left: 5.8rem;
+                left: 4.6rem;
                 top: 6.2rem;
             }
             .balloon{
                 position: absolute;
                 right: 0.4rem;
-                bottom: 1rem;
+                bottom: 3rem;
                 width: 3.45rem;
             }
             .balloon-animation{
@@ -123,13 +147,31 @@
                     bottom: 1rem;
                 }
             }
+            .balloon-click-img{
+                position: absolute;
+                top: 11rem;
+                left: 0.8rem;
+                width: 4.57rem;
+                -webkit-animation: balloonClick 1s ease-in-out infinite;
+            }
+            @-webkit-keyframes balloonClick{
+                0% {
+                    left: 0.8rem;
+                }
+                40% {
+                    left: 1.4rem;
+                }
+                100% {
+                    left: 0.8rem;
+                }
+            }
             .winning-area{
                 width: 100%;
                 height: 100%;
             }
             .winning-title{
                 position: absolute;
-                top: 1.8rem;
+                top: 2.8rem;
                 left: 50%;
                 margin-left: -4.22rem;
                 width: 8.44rem;
@@ -146,24 +188,21 @@
                 height: 1.6rem;
                 max-width: 6rem;
                 display: block;
+                margin-top: 0.6rem;
             }
-            .prize-name{
-                font-size: 0.6rem;
-                float: left;
-                background-color: #000;
-                color: #ffee03;
-                padding: 0.1rem;
-                font-weight: 900;
+            .prize-brand-font{
                 margin-top: 0.3rem;
-                max-width: 6.5rem;
+                font-size: 0.5rem;
+                font-weight: 900;
             }
             .prize-location{
                 float: left;
                 clear: both;
                 margin-top: 0.7rem;
-                font-size: 0.5rem;
+                font-size: 0.35rem;
                 line-height: 0.7rem;
                 font-weight: 600;
+                color: #0064e1;
             }
             .winning-bottom{
                 position: absolute;
@@ -175,8 +214,8 @@
             .qr-code{
                 position: absolute;
                 height: 2.3rem;
-                left: 1.18rem;
-                bottom: 1.6rem;
+                left: 1.25rem;
+                bottom: 3.1rem;
             }
             .unwinning-title{
                 position: absolute;
@@ -188,15 +227,14 @@
             .gift{
                 position: absolute;
                 width: 3.45rem;
-                right: 0.8rem;
-                bottom: 2rem;
+                right: 0.3rem;
+                bottom: 2.4rem;
             }
             .unwinning-bottom{
                 position: absolute;
                 bottom: 3rem;
-                left: 50%;
-                margin-left: -4.24rem;
-                width: 8.48rem;
+                left: 0.8rem;
+                width: 4.52rem;
             }
             .unwinning-rightTop43{
                 position: absolute;
@@ -223,15 +261,28 @@
                 display: block;
             }
             .page5-center{
+                position: absolute;
+                top: 2.5rem;
+                left: -10rem;
+                margin-left: -4.025rem;
+                width: 8.05rem;
+            }
+            .page6-center{
                 height: 16rem;
                 margin: 0.8rem auto;
                 display: block;
             }
-            .page5-rightTop{
+            .page6-rightTop{
                 position: absolute;
                 right: 0rem;
-                top: 0rem;
-                width: 4.52rem;
+                top: 1.5rem;
+                width: 3.52rem;
+            }
+            .share-img{
+                position: absolute;
+                width: 5.75rem;
+                right: 0.4rem;
+                top: 0.4rem;
             }
         </style>
     </head>
@@ -266,12 +317,14 @@
                     <div class="expression terrible">
                         <img class="expression-image" src="/images/page-2/terrible.png" />    
                     </div>
+                    <img class="expression-click-img" src="/images/page-2/click.png"/>
                 </div>
             </div>
             <div class="item page3">
                 <div class="step step-3 slideDown">
                     <img class="page-bg" src="/images/page-3.png"/>
-                    <img class="balloon balloon-animation" src="/images/page-3/balloon.png"/>
+                    <img class="balloon" src="/images/page-3/balloon.png"/>
+                    <img class="balloon-click-img" src="/images/page-3/click.png"/>
                 </div>
             </div>
             <div class="item page4">
@@ -280,18 +333,20 @@
                         <img class="winning-title" src="/images/page-4/winning-title.png"/>
                         <div class="prize-area">
                             <img class="prize-brand" src=""/>
-                            <div class="prize-name"></div>
+                            <div class="prize-brand-font"></div>
                             <div class="prize-location"></div>
                         </div>
                         <img class="winning-bottom" src="/images/page-4/winning-bottom.png"/>
                         <img class="qr-code" src=""/>
+                        <img class="share-img hide" src="/images/share.png"/>
                         <img class="down-arrow hide" src="/images/down-arrow.png">
                     </div>
                     <div class="unwinning-area hide">
                         {{ if ($rest_chance > 1) }}
                         <img class="unwinning-title" src="/images/page-4/unwinning-title.png"/>
-                        <img class="gift heartBeat" src="/images/page-4/gift.png"/>
+                        <img class="gift" src="/images/page-4/gift.png"/>
                         <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png"/>
+                        <img class="balloon-click-img" src="/images/page-3/click.png"/>
                         {{ elseif ($rest_chance == 0) }}
                         <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png"/>
                         <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png"/>
@@ -305,9 +360,17 @@
                 </div>
             </div>
             <div class="item page5">
-                <div class="step step-5 rollInRight">
-                    <img class="page5-rightTop" src="/images/page-4/unwinning-rightTop44.png"/>
-                    <img class="page5-center" src="/images/page-5/page5-center.png" />
+                <div class="step step-5 fadeIn">
+                    <img class="page-bg" src="/images/page-5/page5-bg.png"/>
+                    <img class="page5-center" src="/images/page-5/page5-center.png">
+                    <img class="down-arrow hide" src="/images/down-arrow.png">
+                </div>
+            </div>
+            <div class="item page6">
+                <div class="step step-6 rollInRight">
+                    <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png"/>
+                    <img class="share-img hide" src="/images/share.png"/>
+                    <img class="page6-center" src="/images/page-6/page6-center.png" />
                 </div>
             </div>
         </div>
@@ -374,10 +437,24 @@
                                 },1000);
                                 break;
                             case 4:
-                                $('.balloon').addClass('balloon-animation');
                                 $('.balloon').css({
-                                    'bottom' : '1rem'
+                                    'bottom' : '3rem'
                                 });
+                                break;
+                            case 5:
+                                setTimeout(function () {
+                                    $('.page5-center').animate({
+                                        'left' : '50%'
+                                    },600);
+                                },1000);
+                                setTimeout(function () {
+                                    $('.step-5 .down-arrow').fadeIn();
+                                },2000);
+                                break;
+                            case 6:
+                                setTimeout(function () {
+                                    $('.page6').find('.share-img').fadeIn();    
+                                },1000);
                                 break;
                         }
                     },
@@ -405,7 +482,6 @@
                 $('.balloon').on('click',function () {
                     if(submitSign == true){
                         submitSign = false;
-                        $('.balloon').removeClass('balloon-animation');
                         setTimeout(function () {
                             $('.balloon').animate({
                                 'bottom' : '30rem'
@@ -421,12 +497,13 @@
                                     switch (data.code) {
                                         case 0:
                                             $('.winning-area').show();
-                                            $('.prize-name').html(data.result.prize.product);
-                                            $('.prize-location').html(data.result.prize.brand + '<br>' + data.result.prize.location);
+                                            $('.prize-brand-font').html(data.result.prize.brand);
+                                            $('.prize-location').html('PICK IT UP: dsaijdoasjdoiasjdoasijdioas<br>领取地点:' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             setTimeout(function () {
                                                 $('.winning-area').find('.down-arrow').fadeIn();
+                                                $('.winning-area').find('.share-img').fadeIn();
                                             },2000);
                                             break;
                                         case 10010:
