@@ -59,6 +59,7 @@
                 left: 50%;
                 margin-left: -0.4rem;
                 -webkit-animation: arrow-pop 1s ease-in-out infinite;
+                z-index: 10;
             }
             @-webkit-keyframes arrow-pop{
                 0% {
@@ -75,7 +76,8 @@
                 position: absolute;
                 width: 10rem;
                 height: 8.5rem;
-                left: -10rem;
+                -webkit-transform:translateX(-10rem);
+                -webkit-transition: all 0.6s ease;
                 top: 6.5rem;
             }
             .expression{
@@ -88,19 +90,19 @@
             .expression-click-img{
                 position: absolute;
                 top: 1rem;
-                right: 0.6rem;
+                -webkit-transform:translateX(8.5rem);
                 width: 1.17rem;
                 -webkit-animation: expressionClick 1s ease-in-out infinite;
             }
             @-webkit-keyframes expressionClick{
                 0% {
-                    right: 0.6rem;
+                    -webkit-transform:translateX(8.5rem);
                 }
                 40% {
-                    right: 1rem;
+                    -webkit-transform:translateX(8.1rem);
                 }
                 100% {
-                    right: 0.6rem;
+                    -webkit-transform:translateX(8.5rem);
                 }
             }
             .happy{
@@ -133,36 +135,22 @@
                 top: 3.6rem;
                 width: 3.45rem;
             }
-            .balloon-animation{
-                -webkit-animation: pop 2s ease-in-out infinite;
-            }
-            @-webkit-keyframes pop{
-                0% {
-                    bottom: 1rem;
-                }
-                40% {
-                    bottom: 2rem;
-                }
-                100% {
-                    bottom: 1rem;
-                }
-            }
             .balloon-click-img{
                 position: absolute;
                 top: 11rem;
-                left: 0.8rem;
+                -webkit-transform:translateX(0.8rem);
                 width: 4.57rem;
                 -webkit-animation: balloonClick 1s ease-in-out infinite;
             }
             @-webkit-keyframes balloonClick{
                 0% {
-                    left: 0.8rem;
+                    -webkit-transform:translateX(0.8rem);
                 }
                 40% {
-                    left: 1.4rem;
+                    -webkit-transform:translateX(1.4rem);
                 }
                 100% {
-                    left: 0.8rem;
+                    -webkit-transform:translateX(0.8rem);
                 }
             }
             .winning-area{
@@ -228,7 +216,7 @@
                 position: absolute;
                 width: 3.45rem;
                 right: 0.3rem;
-                bottom: 2.9rem;
+                top: 9.8rem;
             }
             .unwinning-bottom{
                 position: absolute;
@@ -434,8 +422,8 @@
                                 break;
                             case 2:
                                 setTimeout(function () {
-                                    $('.expression-area').animate({
-                                        'left' : '0rem'
+                                    $('.expression-area').css({
+                                        '-webkit-transform' : 'translateX(0rem)'
                                     },600);
                                 },1000);
                                 $('.unwinning-area').hide();
@@ -443,7 +431,7 @@
                             case 3:
                                 setTimeout(function () {
                                     $('.expression-area').css({
-                                        'left' : '-10rem'
+                                        '-webkit-transform' : 'translateX(-10rem)'
                                     });
                                 },1000);
                                 break;
