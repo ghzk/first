@@ -460,6 +460,19 @@
                                 setTimeout(function () {
                                     $('.step-5 .down-arrow').fadeIn();
                                 },2000);
+                                wx.ready(function(){
+                                    wx.onMenuShareTimeline({
+                                        title: '#Giftoftheday How Are You Today?',
+                                        link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
+                                    });
+                                    wx.onMenuShareAppMessage({
+                                        title: '#Giftoftheday How Are You Today?',
+                                        desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                        link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
+                                    });
+                                });
                                 break;
                             case 6:
                                 setTimeout(function () {
@@ -533,19 +546,6 @@
                                     }
                                 },1000);
                             }
-                        });
-                        wx.ready(function(){
-                            wx.onMenuShareTimeline({
-                                title: 'Giftoftheday How Are You Today?',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
-                            });
-                            wx.onMenuShareAppMessage({
-                                title: 'Giftoftheday How Are You Today?',
-                                desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
-                            });
                         });
                         _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
                     }
