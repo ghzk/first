@@ -27,6 +27,8 @@ class PrizeController extends Base
      */
     public function luckyAction()
     {
+        $this->_checkStart();
+
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
 
@@ -41,6 +43,20 @@ class PrizeController extends Base
             'prize'  => $arrPrize,
             'qrcode' => $qrcode,
         ]);
+    }
+
+    /**
+     * 检查活动时间
+     * @throws Exception
+     */
+    private function _checkStart()
+    {
+        $arrErrorMap = Config::get_app_error();
+
+        $date = '2016-09-22 10:00:00';
+        if (time() <= strtotime($date)) {
+            throw new Exception($arrErrorMap[10404], 10404);
+        }
     }
 
     /**
