@@ -402,7 +402,7 @@
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            desc: 'Giftoftheday How Are You Today?',
+                            desc: '#Giftoftheday How Are You Today?',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
