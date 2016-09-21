@@ -27,8 +27,8 @@
                 margin: 0rem auto 0rem auto;
             }
             .step-1 .page-bg{
-                width: 8rem;
-                margin-top: 1rem;
+                width: 8.4rem;
+                margin-top: 0.6rem
             }
             .step-2 .page-bg{
                 width: 7.95rem;
@@ -186,7 +186,7 @@
                 font-size: 1rem;
                 font-weight: 900;
                 height: 1.6rem;
-                max-width: 6rem;
+                max-width: 8rem;
                 display: block;
                 margin-top: 0.6rem;
             }
@@ -263,9 +263,17 @@
             .page5-center{
                 position: absolute;
                 top: 2.5rem;
-                left: -10rem;
+                left: 50%;
                 margin-left: -4.025rem;
                 width: 8.05rem;
+            }
+            .page5-center-box{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background-color: rgba(255,255,255,0.9);
+                top: 0rem;
+                left: -10rem;
             }
             .page6-center{
                 height: 16rem;
@@ -361,8 +369,10 @@
             </div>
             <div class="item page5">
                 <div class="step step-5 fadeIn">
-                    <img class="page-bg" src="/images/page-5/page5-bg.png?0921"/>
-                    <img class="page5-center" src="/images/page-5/page5-center.png?0921">
+                    <img class="page-bg" src="/images/page-5/page5-bg.jpg?0921"/>
+                    <div class="page5-center-box">
+                        <img class="page5-center" src="/images/page-5/page5-center.png?0921">    
+                    </div>
                     <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                 </div>
             </div>
@@ -370,7 +380,7 @@
                 <div class="step step-6 rollInRight">
                     <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0921"/>
                     <img class="share-img hide" style="width:3.89rem" src="/images/share-friends.png?0921"/>
-                    <img class="page6-center" src="/images/page-6/page6-center.png?0921" />
+                    <img class="page6-center" src="/images/page-6/page6-center.png?09212" />
                 </div>
             </div>
         </div>
@@ -398,13 +408,13 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
-                            link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                     });
@@ -443,8 +453,8 @@
                                 break;
                             case 5:
                                 setTimeout(function () {
-                                    $('.page5-center').animate({
-                                        'left' : '50%'
+                                    $('.page5-center-box').animate({
+                                        'left' : '0rem'
                                     },600);
                                 },1000);
                                 setTimeout(function () {
@@ -454,7 +464,7 @@
                             case 6:
                                 setTimeout(function () {
                                     $('.page6').find('.share-img').fadeIn();    
-                                },3000);
+                                },1500);
                                 break;
                         }
                     },
@@ -527,13 +537,13 @@
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
-                                link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                             wx.onMenuShareAppMessage({
                                 title: 'Giftoftheday How Are You Today?',
                                 desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                                link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
+                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                         });
