@@ -30,6 +30,8 @@ class ShareController extends Base
             'openid' => $arrInput['openid'],
             'source' => isset($arrInput['source']) ? $arrInput['source'] : null,
         ]);
+
+        $this->getView()->assign('openid', $strOpenId);
     }
 
 }

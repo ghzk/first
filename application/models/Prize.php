@@ -19,6 +19,10 @@ class PrizeModel extends Base
 
     const TABLE_PRIZE = 'prize';
 
+    // 是否删除
+    const IS_DELETE = 1;
+    const NOT_DELETE = 0;
+
     // 七牛存储host
     const QINIU_HOST = 'http://odqoj6uu3.bkt.clouddn.com';
 
@@ -55,6 +59,7 @@ class PrizeModel extends Base
         $arrList = $this->db()
             ->table(self::TABLE_PRIZE)
             ->select('*')
+            ->where('is_delete', '=', self::NOT_DELETE)
             ->get();
 
         $arrResult = [];
@@ -79,6 +84,7 @@ class PrizeModel extends Base
     {
         $arrOne = $this->db()
             ->table(self::TABLE_PRIZE)
+            ->where('is_delete', '=', self::NOT_DELETE)
             ->find($intPrizeId);
 
         !empty($arrOne) && $arrOne['logo'] = $this->_buildLogo($arrOne['logo']);
@@ -95,6 +101,7 @@ class PrizeModel extends Base
     {
         return $this->db()
             ->table(self::TABLE_PRIZE)
+            ->where('is_delete', '=', self::NOT_DELETE)
             ->sum('sku');
     }
 

@@ -26,17 +26,16 @@ class ActivityModel extends Base
 
     // 每天参与次数
 //    const MAX_JOIN_TIMES = 2;
-    const MAX_JOIN_TIMES = 200;
+    const MAX_JOIN_TIMES = 1000;
 
     // 累计中奖次数上限, 则降低中奖概率
 //    const MAX_WINED_TIMES_FALLING = 4;
-    const MAX_WINED_TIMES_FALLING = 200;
+    const MAX_WINED_TIMES_FALLING = 1000;
 
     // 中奖概率
-//    public static $defaultPrizeOdds = 50;
     public static $defaultPrizeOdds = 50;
+//    public static $defaultPrizeOdds = 50;
 
-    
 
     /**
      * @return ActivityModel
