@@ -27,8 +27,8 @@
                 margin: 0rem auto 0rem auto;
             }
             .step-1 .page-bg{
-                width: 8.4rem;
-                margin-top: 0.6rem
+                height: 90%;
+                margin-top: 5%;
             }
             .step-2 .page-bg{
                 width: 7.95rem;
