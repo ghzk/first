@@ -105,6 +105,12 @@
                     -webkit-transform:translateX(8.5rem);
                 }
             }
+            .expression-gif{
+                width: 1.77rem;
+                position: absolute;
+                top: -0.05rem;
+                left: -0.07rem;
+            }
             .happy{
                 left: 0.8rem;
                 top: 0.4rem;
@@ -187,7 +193,7 @@
                 float: left;
                 clear: both;
                 margin-top: 0.3rem;
-                font-size: 0.4rem;
+                font-size: 0.3rem;
                 line-height: 0.7rem;
                 font-weight: 600;
                 color: #0064e1;
@@ -298,22 +304,28 @@
                 </div>
                 <div class="expression-area">
                     <div class="expression happy">
-                        <img class="expression-image" src="/images/page-2/happy.png?0921" />    
+                        <img class="expression-image" src="/images/page-2/happy.png?0921" />
+                        <img class="expression-gif hide" src="/images/page-2/16.gif">
                     </div>
                     <div class="expression adorable">
-                        <img class="expression-image" src="/images/page-2/adorable.png?0921" />    
+                        <img class="expression-image" src="/images/page-2/adorable.png?0921" />
+                        <img class="expression-gif hide" src="/images/page-2/25.gif">
                     </div>
                     <div class="expression chill">
-                        <img class="expression-image" src="/images/page-2/chill.png?0921" />    
+                        <img class="expression-image" src="/images/page-2/chill.png?0921" />
+                        <img class="expression-gif hide" src="/images/page-2/34.gif">
                     </div>
                     <div class="expression upset">
-                        <img class="expression-image" src="/images/page-2/upset.png?0921" />    
+                        <img class="expression-image" src="/images/page-2/upset.png?0921" />
+                        <img class="expression-gif hide" src="/images/page-2/34.gif">
                     </div>
                     <div class="expression weird">
-                        <img class="expression-image" src="/images/page-2/weird.png?0921" />    
+                        <img class="expression-image" src="/images/page-2/weird.png?0921" />
+                        <img class="expression-gif hide" src="/images/page-2/25.gif">
                     </div>
                     <div class="expression terrible">
                         <img class="expression-image" src="/images/page-2/terrible.png?0921" />    
+                        <img class="expression-gif hide" src="/images/page-2/16.gif">
                     </div>
                     <img class="expression-click-img" src="/images/page-2/click.png?0921"/>
                 </div>
@@ -446,10 +458,10 @@
                                         'left' : '50%'
                                     },600);
                                     $('.page5-center-box').fadeIn();
-                                },1000);
+                                },5000);
                                 setTimeout(function () {
                                     $('.step-5 .down-arrow').fadeIn();
-                                },2000);
+                                },5000);
                                 wx.ready(function(){
                                     wx.onMenuShareTimeline({
                                         title: '#Giftoftheday How Are You Today?',
@@ -484,9 +496,9 @@
                     if(expressionSelect == false){
                         expressionSelect = true;
                         var $this = $(this);
-                        $this.addClass('heartBeat');
+                        $this.find('.expression-gif').show();
                         setTimeout(function () {
-                            $this.removeClass('heartBeat');
+                            $this.find('.expression-gif').hide();
                             slidePage.index(3);
                             expressionSelect = false;
                         },1500);
@@ -533,6 +545,12 @@
                                                 $('.unwinning-area').find('.down-arrow').fadeIn();
                                             },2000);
                                             break;
+                                        /*case 12:
+                                            alert(1);
+                                            $('.balloon').css({
+                                                'top' : '3.6rem'
+                                            });
+                                            break;*/
                                     }
                                 },1000);
                             }
