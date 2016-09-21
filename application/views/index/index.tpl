@@ -454,7 +454,7 @@
                             case 6:
                                 setTimeout(function () {
                                     $('.page6').find('.share-img').fadeIn();    
-                                },1000);
+                                },2000);
                                 break;
                         }
                     },
