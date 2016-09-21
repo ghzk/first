@@ -20,7 +20,7 @@ class PrizeModel extends Base
     const TABLE_PRIZE = 'prize';
 
     // 七牛存储host
-    const QINIU_HOST = 'http://odluuizn5.bkt.clouddn.com';
+    const QINIU_HOST = 'http://odqoj6uu3.bkt.clouddn.com';
 
 
     /**

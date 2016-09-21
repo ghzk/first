@@ -30,11 +30,13 @@ class ActivityModel extends Base
 
     // 累计中奖次数上限, 则降低中奖概率
 //    const MAX_WINED_TIMES_FALLING = 4;
-    const MAX_WINED_TIMES_FALLING = 100;
+    const MAX_WINED_TIMES_FALLING = 200;
 
     // 中奖概率
+//    public static $defaultPrizeOdds = 50;
     public static $defaultPrizeOdds = 50;
 
+    
 
     /**
      * @return ActivityModel
