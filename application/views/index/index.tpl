@@ -380,7 +380,7 @@
                 <div class="step step-6 rollInRight">
                     <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0921"/>
                     <img class="share-img hide" style="width:3.89rem" src="/images/share-friends.png?0921"/>
-                    <img class="page6-center" src="/images/page-6/page6-center.png?09212" />
+                    <img class="page6-center" src="/images/page-6/page6-center.png?0922" />
                 </div>
             </div>
         </div>
