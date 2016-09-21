@@ -398,13 +398,13 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                     });
@@ -498,7 +498,7 @@
                                         case 0:
                                             $('.winning-area').show();
                                             $('.prize-brand-font').html(data.result.prize.brand);
-                                            $('.prize-location').html('PICK IT UP: dsaijdoasjdoiasjdoasijdioas<br>领取地点:' + data.result.prize.location);
+                                            $('.prize-location').html('PICK IT UP: '+data.result.location_en+'<br>领取地点:' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             setTimeout(function () {
@@ -527,13 +527,13 @@
                         wx.ready(function(){
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                             wx.onMenuShareAppMessage({
                                 title: 'Giftoftheday How Are You Today?',
                                 desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                                link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
                                 imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                         });

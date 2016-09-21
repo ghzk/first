@@ -9,7 +9,6 @@
             html{
                 height: 100%;
                 width: 100%;
-                background-color: #ffee03;
             }
             body{
                 height: 100%;
@@ -22,9 +21,15 @@
                 height: 100%;
                 overflow: auto;
             }
+            .step-1{
+                background-color: #fff;
+            }
             .page-bg{
                 display: block;
                 margin: 0rem auto 0rem auto;
+            }
+            .step-2{
+                background-color: #ffee03;
             }
             .page1-center{
                 position: absolute;
@@ -53,7 +58,7 @@
         </style>
     </head>
     <body>
-        <div class="slidePage-container" id="slidePage-container">
+        <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 fadeIn">
                     <img class="page-bg" src="/images/page-5/page5-bg.png?0921"/>
@@ -93,19 +98,24 @@
                     wx.ready(function(){
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
-                            link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                            link: 'http://hayt.kerryon.me/share/indexsource={{ $openid }}',
                             imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                     });
                 }
             });
             var initPage = function () {
+                setTimeout(function () {
+                    $('.page1-center').animate({
+                        'left' : '50%'
+                    },600);
+                },1000);
                 setTimeout(function () {
                     $('.step-1 .down-arrow').fadeIn();
                 },2000);
@@ -117,7 +127,7 @@
                                 break;
                             case 2:
                                 setTimeout(function () {
-                                    $('.page6').find('.share-img').fadeIn();    
+                                    $('.page2').find('.share-img').fadeIn();    
                                 },3000);
                                 break;
                         }
@@ -126,6 +136,7 @@
                     'refresh'  : false,
                     'unSlidePageList' : [2,3]
                 });
+                $('.slidePage-container').fadeIn();
                 _hmt.push(['_trackEvent', 'sharePage', 'sharePage']);
             }
             new initPage();
