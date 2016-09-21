@@ -129,8 +129,8 @@
         animation-name: forceDown;
         -webkit-animation-name: forceDown;
 
-        animation-duration: .5s;
-        -webkit-animation-duration: .5s;
+        animation-duration: 1s;
+        -webkit-animation-duration: 1s;
 
         animation-timing-function: ease-in;
         -webkit-animation-timing-function: ease-in;

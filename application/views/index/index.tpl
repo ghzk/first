@@ -297,7 +297,7 @@
     <body>
         <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
-                <div class="step step-1 slideDown">
+                <div class="step step-1 forceDown">
                     <img class="page-bg" src="/images/page-1.png?0921 F"/>
                     <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                 </div>
