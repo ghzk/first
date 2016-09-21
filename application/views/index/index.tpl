@@ -511,7 +511,7 @@
                                         case 0:
                                             $('.winning-area').show();
                                             $('.prize-brand-font').html(data.result.prize.brand);
-                                            $('.prize-location').html('PICK IT UP: '+data.result.location_en+'<br>领取地点:' + data.result.prize.location);
+                                            $('.prize-location').html('PICK IT UP: '+data.result.prize.location_en+'<br>领取地点:' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             setTimeout(function () {
