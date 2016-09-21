@@ -26,6 +26,8 @@ class PrizeModel extends Base
     // 七牛存储host
     const QINIU_HOST = 'http://odqoj6uu3.bkt.clouddn.com';
 
+    const LOCATION_PREF = '静安嘉里中心';
+    const LOCATION_EN_PREF = 'Jing An Kerry Centre ';
 
     /**
      * @return PrizeModel
@@ -49,6 +51,16 @@ class PrizeModel extends Base
         return !empty($logo) ? self::QINIU_HOST . '/' . $logo : '';
     }
 
+    private function _buildLocation($location)
+    {
+        return !empty($location) ? self::LOCATION_PREF . $location : '';
+    }
+
+    private function _buildLocationEn($locationEn)
+    {
+        return !empty($locationEn) ? self::LOCATION_EN_PREF . $locationEn : '';
+    }
+
     /**
      * Get All Prize
      * @return array|static[]
@@ -66,6 +78,8 @@ class PrizeModel extends Base
         foreach ($arrList as $item) {
 
             $item['logo'] = $this->_buildLogo($item['logo']);
+            $item['location'] = $this->_buildLocation($item['location']);
+            $item['location_en'] = $this->_buildLocationEn($item['location_en']);
             $arrResult[] = $item;
         }
 
@@ -87,7 +101,11 @@ class PrizeModel extends Base
             ->where('is_delete', '=', self::NOT_DELETE)
             ->find($intPrizeId);
 
-        !empty($arrOne) && $arrOne['logo'] = $this->_buildLogo($arrOne['logo']);
+        if (!empty($arrOne)) {
+            $arrOne['logo'] = $this->_buildLogo($arrOne['logo']);
+            $arrOne['location'] = $this->_buildLocation($arrOne['location']);
+            $arrOne['location_en'] = $this->_buildLocationEn($arrOne['location_en']);
+        }
 
         return $arrOne;
     }
