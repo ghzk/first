@@ -240,6 +240,35 @@ class ActivityModel extends Base
         return $intOdds;
     }
 
+    /**
+     * 检查白名单
+     *
+     * @param $strOpenId
+     *
+     * @return null
+     */
+    public function checkWriteOpenId($strOpenId)
+    {
+        $arrOpenIdConf = Config::get_app_white();
+        $strDate = '2016-09-22';
+        if (date('Y-m-d', time()) !== $strDate) {
+            return null;
+        }
+
+        if (!array_key_exists($strOpenId, $arrOpenIdConf)) {
+            return null;
+        }
+
+        $arrJoinList = $this->getUserTodayJoinList($strOpenId);
+        $times = count($arrJoinList);
+        if ($times === 0) {
+            return isset($arrOpenIdConf[$strOpenId][0]) ? $arrOpenIdConf[$strOpenId][0] : null;
+        } else if ($times === 1) {
+            return isset($arrOpenIdConf[$strOpenId][1]) ? $arrOpenIdConf[$strOpenId][1] : null;
+        } else {
+            return null;
+        }
+    }
 
     /**
      * 抽奖
@@ -271,6 +300,14 @@ class ActivityModel extends Base
 
             $bolWin = $this->_checkWin($intOdds);
             $intPrizeId = PrizeModel::Instance()->getWinPrizeId();
+
+            // 判断是否白名单内openId
+            $bolWhite = $this->checkWriteOpenId($strOpenId);
+            if ($bolWhite) {
+                $bolWin = true;
+                $intPrizeId = $bolWhite;
+            }
+
             if ($bolWin && $intPrizeId) {
                 // 添加获奖记录
                 // 对应奖品库存 -1
