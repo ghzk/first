@@ -130,7 +130,7 @@
             .balloon{
                 position: absolute;
                 right: 0.4rem;
-                bottom: 2.4rem;
+                top: 3.6rem;
                 width: 3.45rem;
             }
             .balloon-animation{
@@ -369,7 +369,7 @@
             <div class="item page6">
                 <div class="step step-6 rollInRight">
                     <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0921"/>
-                    <img class="share-img hide" src="/images/share-friends.png?0921"/>
+                    <img class="share-img hide" style="width:3.89rem" src="/images/share-friends.png?0921"/>
                     <img class="page6-center" src="/images/page-6/page6-center.png?0921" />
                 </div>
             </div>
@@ -438,7 +438,7 @@
                                 break;
                             case 4:
                                 $('.balloon').css({
-                                    'bottom' : '2.4rem'
+                                    'top' : '3.6rem'
                                 });
                                 break;
                             case 5:
@@ -483,7 +483,7 @@
                         submitSign = false;
                         setTimeout(function () {
                             $('.balloon').animate({
-                                'bottom' : '30rem'
+                                'top' : '-15rem'
                             },800);    
                         },100);
                         $.ajax({
