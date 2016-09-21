@@ -1,13 +1,13 @@
 <?php
 /***************************************************************************
  *
- * Copyright (c) 2016 Baidu.com, Inc. All Rights Reserved
+ * Copyright (c) 2016 Fan Yitian. All Rights Reserved
  *
  **************************************************************************/
 
 /**
  * @file   Tool.php
- * @author fanyitian (fanyitian@baidu.com)
+ * @author fanyitian (yitian920@163.com)
  * @date   2016-09-16
  * @brief
  *
