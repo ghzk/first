@@ -4,7 +4,7 @@
     	{{ include file="header.tpl" }}
         <link rel="stylesheet" type="text/css" href="/css/widget/slidePage.css">
         <link rel="stylesheet" type="text/css" href="/css/widget/page-animation.css">
-    	<title>Light You Mood</title>
+    	<title>how are you today</title>
         <style type="text/css">
             html{
                 height: 100%;
@@ -198,7 +198,7 @@
             .prize-location{
                 float: left;
                 clear: both;
-                margin-top: 0.7rem;
+                margin-top: 0.2rem;
                 font-size: 0.35rem;
                 line-height: 0.7rem;
                 font-weight: 600;
@@ -287,90 +287,90 @@
         </style>
     </head>
     <body>
-        <div class="slidePage-container hide" id="slidePage-container">
+        <div class="slidePage-container" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 slideDown">
-                    <img class="page-bg" src="/images/page-1.png"/>
-                    <img class="down-arrow hide" src="/images/down-arrow.png">
+                    <img class="page-bg" src="/images/page-1.png?0921 F"/>
+                    <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                 </div>
             </div>
             <div class="item page2">
                 <div class="step step-2 rollInLeft">
-                    <img class="page-bg" src="/images/page-2.png"/>
+                    <img class="page-bg" src="/images/page-2.png?0921"/>
                 </div>
                 <div class="expression-area">
                     <div class="expression happy">
-                        <img class="expression-image" src="/images/page-2/happy.png" />    
+                        <img class="expression-image" src="/images/page-2/happy.png?0921" />    
                     </div>
                     <div class="expression adorable">
-                        <img class="expression-image" src="/images/page-2/adorable.png" />    
+                        <img class="expression-image" src="/images/page-2/adorable.png?0921" />    
                     </div>
                     <div class="expression chill">
-                        <img class="expression-image" src="/images/page-2/chill.png" />    
+                        <img class="expression-image" src="/images/page-2/chill.png?0921" />    
                     </div>
                     <div class="expression upset">
-                        <img class="expression-image" src="/images/page-2/upset.png" />    
+                        <img class="expression-image" src="/images/page-2/upset.png?0921" />    
                     </div>
                     <div class="expression weird">
-                        <img class="expression-image" src="/images/page-2/weird.png" />    
+                        <img class="expression-image" src="/images/page-2/weird.png?0921" />    
                     </div>
                     <div class="expression terrible">
-                        <img class="expression-image" src="/images/page-2/terrible.png" />    
+                        <img class="expression-image" src="/images/page-2/terrible.png?0921" />    
                     </div>
-                    <img class="expression-click-img" src="/images/page-2/click.png"/>
+                    <img class="expression-click-img" src="/images/page-2/click.png?0921"/>
                 </div>
             </div>
             <div class="item page3">
                 <div class="step step-3 slideDown">
-                    <img class="page-bg" src="/images/page-3.png"/>
-                    <img class="balloon" src="/images/page-3/balloon.png"/>
-                    <img class="balloon-click-img" src="/images/page-3/click.png"/>
+                    <img class="page-bg" src="/images/page-3.png?0921"/>
+                    <img class="balloon" src="/images/page-3/balloon.png?0921"/>
+                    <img class="balloon-click-img" src="/images/page-3/click.png?0921"/>
                 </div>
             </div>
             <div class="item page4">
                 <div class="step step-4 zoomIn">
                     <div class="winning-area hide">
-                        <img class="winning-title" src="/images/page-4/winning-title.png"/>
+                        <img class="winning-title" src="/images/page-4/winning-title.png?0921"/>
                         <div class="prize-area">
                             <img class="prize-brand" src=""/>
                             <div class="prize-brand-font"></div>
                             <div class="prize-location"></div>
                         </div>
-                        <img class="winning-bottom" src="/images/page-4/winning-bottom.png"/>
+                        <img class="winning-bottom" src="/images/page-4/winning-bottom.png?0921"/>
                         <img class="qr-code" src=""/>
-                        <img class="share-img hide" src="/images/share.png"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png">
+                        <img class="share-img hide" src="/images/share.png?0921"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                     </div>
                     <div class="unwinning-area hide">
                         {{ if ($rest_chance > 1) }}
-                        <img class="unwinning-title" src="/images/page-4/unwinning-title.png"/>
-                        <img class="gift" src="/images/page-4/gift.png"/>
-                        <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png"/>
-                        <img class="balloon-click-img" src="/images/page-3/click.png"/>
+                        <img class="unwinning-title" src="/images/page-4/unwinning-title.png?0921"/>
+                        <img class="gift" src="/images/page-4/gift.png?0921"/>
+                        <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png?0921"/>
+                        <img class="balloon-click-img" src="/images/page-3/click.png?0921"/>
                         {{ elseif ($rest_chance == 0) }}
-                        <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png"/>
-                        <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png">
+                        <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png?0921"/>
+                        <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png?0921"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                         {{ else }}
-                        <img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>
-                        <img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png">
+                        <img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?0921"/>
+                        <img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?0921"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                         {{ /if }}
                     </div>
                 </div>
             </div>
             <div class="item page5">
                 <div class="step step-5 fadeIn">
-                    <img class="page-bg" src="/images/page-5/page5-bg.png"/>
-                    <img class="page5-center" src="/images/page-5/page5-center.png">
-                    <img class="down-arrow hide" src="/images/down-arrow.png">
+                    <img class="page-bg" src="/images/page-5/page5-bg.png?0921"/>
+                    <img class="page5-center" src="/images/page-5/page5-center.png?0921">
+                    <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                 </div>
             </div>
             <div class="item page6">
                 <div class="step step-6 rollInRight">
-                    <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png"/>
-                    <img class="share-img hide" src="/images/share.png"/>
-                    <img class="page6-center" src="/images/page-6/page6-center.png" />
+                    <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0921"/>
+                    <img class="share-img hide" src="/images/share.png?0921"/>
+                    <img class="page6-center" src="/images/page-6/page6-center.png?0921" />
                 </div>
             </div>
         </div>
@@ -399,13 +399,13 @@
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                         });
                     });
                 }
@@ -462,7 +462,7 @@
                     'refresh'  : false,
                     'unSlidePageList' : [2,3]
                 });
-                $('.slidePage-container').show();
+                //$('.slidePage-container').show();
                 new bindBtnFunc();
                 _hmt.push(['_trackEvent', 'homePage', 'homePage']);
             }
@@ -526,13 +526,13 @@
                             wx.onMenuShareTimeline({
                                 title: 'Giftoftheday How Are You Today?',
                                 link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                             wx.onMenuShareAppMessage({
                                 title: 'Giftoftheday How Are You Today?',
                                 desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
                                 link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg'
+                                imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0921'
                             });
                         });
                         _hmt.push(['_trackEvent', 'getPrice', 'getPrice']);
@@ -541,9 +541,9 @@
                 $('.gift').on('click',function () {
                     slidePage.index(2);
                     var html = 
-                        '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png"/>'+
-                        '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png"/>'+
-                        '<img class="down-arrow hide" src="/images/down-arrow.png">';
+                        '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?0921"/>'+
+                        '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?0921"/>'+
+                        '<img class="down-arrow hide" src="/images/down-arrow.png?0921">';
                     $('.unwinning-area').html(html);
                 });
             }

@@ -4,7 +4,7 @@
     	{{ include file="header.tpl" }}
         <link rel="stylesheet" type="text/css" href="/css/widget/slidePage.css">
         <link rel="stylesheet" type="text/css" href="/css/widget/page-animation.css">
-    	<title>Light You Mood</title>
+    	<title>how are you today</title>
         <style type="text/css">
             html{
                 height: 100%;
@@ -41,7 +41,7 @@
                 width: 2.4rem;
                 text-align: center;
                 color: #ffee03;
-                background-color: #000;
+                background-color: #0064e1;
                 margin: 0.8rem 0rem;
                 font-size: 0.4rem;
                 font-weight: 900;
@@ -50,7 +50,7 @@
     </head>
     <body>
         <div class="center">
-            <img class="title" src="/images/check.png">
+            <img class="title" src="/images/check.png?0921">
             <div class="input-area">
                 <input class="input"/>
                 <div class="check-btn">兑换奖品</div>
