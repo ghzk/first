@@ -287,7 +287,7 @@
         </style>
     </head>
     <body>
-        <div class="slidePage-container" id="slidePage-container">
+        <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 slideDown">
                     <img class="page-bg" src="/images/page-1.png?0921 F"/>
@@ -462,6 +462,7 @@
                     'refresh'  : false,
                     'unSlidePageList' : [2,3]
                 });
+                $('.slidePage-container').fadeIn();
                 new bindBtnFunc();
                 _hmt.push(['_trackEvent', 'homePage', 'homePage']);
             }
