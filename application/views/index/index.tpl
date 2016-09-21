@@ -130,7 +130,7 @@
             .balloon{
                 position: absolute;
                 right: 0.4rem;
-                bottom: 3rem;
+                bottom: 2.4rem;
                 width: 3.45rem;
             }
             .balloon-animation{
@@ -198,24 +198,24 @@
             .prize-location{
                 float: left;
                 clear: both;
-                margin-top: 0.2rem;
-                font-size: 0.35rem;
+                margin-top: 0.3rem;
+                font-size: 0.4rem;
                 line-height: 0.7rem;
                 font-weight: 600;
                 color: #0064e1;
             }
             .winning-bottom{
                 position: absolute;
-                bottom: 1.5rem;
+                bottom: 1rem;
                 left: 50%;
                 margin-left: -4.175rem;
                 width: 8.35rem;
             }
             .qr-code{
                 position: absolute;
-                height: 2.3rem;
-                left: 1.25rem;
-                bottom: 3.1rem;
+                height: 2.4rem;
+                left: 1.2rem;
+                bottom: 2.55rem;
             }
             .unwinning-title{
                 position: absolute;
@@ -228,7 +228,7 @@
                 position: absolute;
                 width: 3.45rem;
                 right: 0.3rem;
-                bottom: 2.4rem;
+                bottom: 2.9rem;
             }
             .unwinning-bottom{
                 position: absolute;
@@ -269,7 +269,7 @@
             }
             .page6-center{
                 height: 16rem;
-                margin: 0.8rem auto;
+                margin: 0rem auto;
                 display: block;
             }
             .page6-rightTop{
@@ -344,7 +344,7 @@
                     <div class="unwinning-area hide">
                         {{ if ($rest_chance > 1) }}
                         <img class="unwinning-title" src="/images/page-4/unwinning-title.png?0921"/>
-                        <img class="gift" src="/images/page-4/gift.png?0921"/>
+                        <img class="gift" src="/images/page-4/gift.png?09212"/>
                         <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png?0921"/>
                         <img class="balloon-click-img" src="/images/page-3/click.png?0921"/>
                         {{ elseif ($rest_chance == 0) }}
@@ -369,7 +369,7 @@
             <div class="item page6">
                 <div class="step step-6 rollInRight">
                     <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0921"/>
-                    <img class="share-img hide" src="/images/share.png?0921"/>
+                    <img class="share-img hide" src="/images/share-friends.png?0921"/>
                     <img class="page6-center" src="/images/page-6/page6-center.png?0921" />
                 </div>
             </div>
@@ -438,7 +438,7 @@
                                 break;
                             case 4:
                                 $('.balloon').css({
-                                    'bottom' : '3rem'
+                                    'bottom' : '2.4rem'
                                 });
                                 break;
                             case 5:
@@ -454,7 +454,7 @@
                             case 6:
                                 setTimeout(function () {
                                     $('.page6').find('.share-img').fadeIn();    
-                                },2000);
+                                },3000);
                                 break;
                         }
                     },
@@ -462,7 +462,6 @@
                     'refresh'  : false,
                     'unSlidePageList' : [2,3]
                 });
-                //$('.slidePage-container').show();
                 new bindBtnFunc();
                 _hmt.push(['_trackEvent', 'homePage', 'homePage']);
             }
@@ -503,8 +502,10 @@
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             setTimeout(function () {
                                                 $('.winning-area').find('.down-arrow').fadeIn();
-                                                $('.winning-area').find('.share-img').fadeIn();
                                             },2000);
+                                            setTimeout(function () {
+                                                $('.winning-area').find('.share-img').fadeIn();
+                                            },3000);
                                             break;
                                         case 10010:
                                             $('.unwinning-area').show();
