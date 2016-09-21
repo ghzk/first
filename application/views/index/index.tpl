@@ -263,17 +263,19 @@
             .page5-center{
                 position: absolute;
                 top: 2.5rem;
-                left: 50%;
+                left: -10rem;
                 margin-left: -4.025rem;
                 width: 8.05rem;
+                z-index: 10;
             }
             .page5-center-box{
                 position: absolute;
                 height: 100%;
                 width: 100%;
-                background-color: rgba(255,255,255,0.9);
+                background-color: rgba(255,255,255,0.8);
                 top: 0rem;
-                left: -10rem;
+                left: 0rem;
+                z-index: 9;
             }
             .page6-center{
                 height: 16rem;
@@ -370,9 +372,8 @@
             <div class="item page5">
                 <div class="step step-5 fadeIn">
                     <img class="page-bg" src="/images/page-5/page5-bg.jpg?0921"/>
-                    <div class="page5-center-box">
-                        <img class="page5-center" src="/images/page-5/page5-center.png?0921">    
-                    </div>
+                    <img class="page5-center" src="/images/page-5/page5-center.png?0921">    
+                    <div class="page5-center-box hide"></div>
                     <img class="down-arrow hide" src="/images/down-arrow.png?0921">
                 </div>
             </div>
@@ -453,9 +454,10 @@
                                 break;
                             case 5:
                                 setTimeout(function () {
-                                    $('.page5-center-box').animate({
-                                        'left' : '0rem'
+                                    $('.page5-center').animate({
+                                        'left' : '50%'
                                     },600);
+                                    $('.page5-center-box').fadeIn();
                                 },1000);
                                 setTimeout(function () {
                                     $('.step-5 .down-arrow').fadeIn();
