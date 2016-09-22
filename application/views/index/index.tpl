@@ -567,13 +567,7 @@
                     $('.unwinning-area').html(html);
                 });
             }
-            var nowTime = new Date().getTime();
-            if(nowTime < new Date('2016/09/22 10:00:00').getTime()){
-                $('.slidePage-container').fadeIn();
-                alert('活动还没有开始，敬请期待哦');
-            }else{
-                new initPage();    
-            }
+            new initPage();
     	});
     </script>
     <script>
