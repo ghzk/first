@@ -294,94 +294,94 @@
         <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 forceDown">
-                    <img class="page-bg" src="/images/page-1.png?0922"/>
-                    <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                    <img class="page-bg" src="/images/page-1.png?09221"/>
+                    <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                 </div>
             </div>
             <div class="item page2">
                 <div class="step step-2 rollInLeft">
-                    <img class="page-bg" src="/images/page-2.png?0922"/>
+                    <img class="page-bg" src="/images/page-2.png?09221"/>
                 </div>
                 <div class="expression-area">
                     <div class="expression happy">
-                        <img class="expression-image" src="/images/page-2/happy.png?0922" />
+                        <img class="expression-image" src="/images/page-2/happy.png?09221" />
                         <img class="expression-gif hide" src="/images/page-2/16.gif">
                     </div>
                     <div class="expression adorable">
-                        <img class="expression-image" src="/images/page-2/adorable.png?0922" />
+                        <img class="expression-image" src="/images/page-2/adorable.png?09221" />
                         <img class="expression-gif hide" src="/images/page-2/25.gif">
                     </div>
                     <div class="expression chill">
-                        <img class="expression-image" src="/images/page-2/chill.png?0922" />
+                        <img class="expression-image" src="/images/page-2/chill.png?09221" />
                         <img class="expression-gif hide" src="/images/page-2/34.gif">
                     </div>
                     <div class="expression upset">
-                        <img class="expression-image" src="/images/page-2/upset.png?0922" />
+                        <img class="expression-image" src="/images/page-2/upset.png?09221" />
                         <img class="expression-gif hide" src="/images/page-2/34.gif">
                     </div>
                     <div class="expression weird">
-                        <img class="expression-image" src="/images/page-2/weird.png?0922" />
+                        <img class="expression-image" src="/images/page-2/weird.png?09221" />
                         <img class="expression-gif hide" src="/images/page-2/25.gif">
                     </div>
                     <div class="expression terrible">
-                        <img class="expression-image" src="/images/page-2/terrible.png?0922" />    
+                        <img class="expression-image" src="/images/page-2/terrible.png?09221" />    
                         <img class="expression-gif hide" src="/images/page-2/16.gif">
                     </div>
-                    <img class="expression-click-img" src="/images/page-2/click.png?0922"/>
+                    <img class="expression-click-img" src="/images/page-2/click.png?09221"/>
                 </div>
             </div>
             <div class="item page3">
                 <div class="step step-3 slideDown">
-                    <img class="page-bg" src="/images/page-3.png?0922"/>
-                    <img class="balloon" src="/images/page-3/balloon.png?0922"/>
-                    <img class="balloon-click-img" src="/images/page-3/click.png?0922"/>
+                    <img class="page-bg" src="/images/page-3.png?09221"/>
+                    <img class="balloon" src="/images/page-3/balloon.png?09221"/>
+                    <img class="balloon-click-img" src="/images/page-3/click.png?09221"/>
                 </div>
             </div>
             <div class="item page4">
                 <div class="step step-4 zoomIn">
                     <div class="winning-area hide">
-                        <img class="winning-title" src="/images/page-4/winning-title.png?0922"/>
+                        <img class="winning-title" src="/images/page-4/winning-title.png?09221"/>
                         <div class="prize-area">
                             <img class="prize-brand" src=""/>
                             <div class="prize-brand-font"></div>
                             <div class="prize-location"></div>
                         </div>
-                        <img class="winning-bottom" src="/images/page-4/winning-bottom.png?0922"/>
+                        <img class="winning-bottom" src="/images/page-4/winning-bottom.png?09221"/>
                         <img class="qr-code" src=""/>
-                        <img class="share-img hide" src="/images/share.png?0922"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                        <img class="share-img hide" src="/images/share.png?09221"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                     </div>
                     <div class="unwinning-area hide">
                         {{ if ($rest_chance > 1) }}
-                        <img class="unwinning-title" src="/images/page-4/unwinning-title.png?0922"/>
-                        <img class="gift" src="/images/page-4/gift.png?09222"/>
-                        <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png?0922"/>
-                        <img class="balloon-click-img" src="/images/page-3/click.png?0922"/>
+                        <img class="unwinning-title" src="/images/page-4/unwinning-title.png?09221"/>
+                        <img class="gift" src="/images/page-4/gift.png?092212"/>
+                        <img class="unwinning-bottom" src="/images/page-4/unwinning-bottom.png?09221"/>
+                        <img class="balloon-click-img" src="/images/page-3/click.png?09221"/>
                         {{ elseif ($rest_chance == 0) }}
-                        <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png?0922"/>
-                        <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png?0922"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                        <img class="unwinning-rightTop44" src="/images/page-4/unwinning-rightTop44.png?09221"/>
+                        <img class="unwinning-center44" src="/images/page-4/unwinning-center44.png?09221"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                         {{ else }}
-                        <img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?0922"/>
-                        <img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?0922"/>
-                        <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                        <img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?09221"/>
+                        <img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?09221"/>
+                        <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                         {{ /if }}
                     </div>
                 </div>
             </div>
             <div class="item page5">
                 <div class="step step-5 fadeIn">
-                    <img class="page-bg" src="/images/page-5/page5-bg.jpg?0922"/>
-                    <img class="page5-center" src="/images/page-5/page5-center.png?0922">    
+                    <img class="page-bg" src="/images/page-5/page5-bg.jpg?09221"/>
+                    <img class="page5-center" src="/images/page-5/page5-center.png?09221">    
                     <div class="page5-center-box hide"></div>
-                    <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                    <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                 </div>
             </div>
             <div class="item page6">
                 <div class="step step-6 rollInRight">
-                    <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?0922"/>
-                    <img class="share-img hide" style="width:3.89rem" src="/images/share-friends.png?0922"/>
-                    <img class="page6-center" src="/images/page-6/page6-center.png?0922" />
+                    <img class="page6-rightTop" src="/images/page-4/unwinning-rightTop44.png?09221"/>
+                    <img class="share-img hide" style="width:3.89rem" src="/images/share-friends.png?09221"/>
+                    <img class="page6-center" src="/images/page-6/page6-center.png?09221" />
                 </div>
             </div>
         </div>
@@ -410,13 +410,13 @@
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: '#Giftoftheday How Are You Today?',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                         });
                     });
                 }
@@ -466,13 +466,13 @@
                                     wx.onMenuShareTimeline({
                                         title: '#Giftoftheday How Are You Today?',
                                         link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                                     });
                                     wx.onMenuShareAppMessage({
                                         title: '#Giftoftheday How Are You Today?',
                                         desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
                                         link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                                     });
                                 });
                                 break;
@@ -570,9 +570,9 @@
                 $('.gift').on('click',function () {
                     slidePage.index(2);
                     var html = 
-                        '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?0922"/>'+
-                        '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?0922"/>'+
-                        '<img class="down-arrow hide" src="/images/down-arrow.png?0922">';
+                        '<img class="unwinning-rightTop43" src="/images/page-4/unwinning-rightTop43.png?09221"/>'+
+                        '<img class="unwinning-center43" src="/images/page-4/unwinning-center43.png?09221"/>'+
+                        '<img class="down-arrow hide" src="/images/down-arrow.png?09221">';
                     $('.unwinning-area').html(html);
                 });
             }

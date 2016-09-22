@@ -61,16 +61,16 @@
         <div class="slidePage-container hide" id="slidePage-container">
             <div class="item page1">
                 <div class="step step-1 fadeIn">
-                    <img class="page-bg" src="/images/page-5/page5-bg.png?0922"/>
-                    <img class="page1-center" src="/images/page-5/page5-center.png?0922">
-                    <img class="down-arrow hide" src="/images/down-arrow.png?0922">
+                    <img class="page-bg" src="/images/page-5/page5-bg.png?09221"/>
+                    <img class="page1-center" src="/images/page-5/page5-center.png?09221">
+                    <img class="down-arrow hide" src="/images/down-arrow.png?09221">
                 </div>
             </div>
             <div class="item page1">
                 <div class="step step-2 rollInRight">
-                    <img class="page2-rightTop" src="/images/page-4/unwinning-rightTop44.png?0922"/>
-                    <img class="share-img hide" src="/images/share-friends.png?0922"/>
-                    <img class="page2-center" src="/images/page-6/page6-center.png?0922" />
+                    <img class="page2-rightTop" src="/images/page-4/unwinning-rightTop44.png?09221"/>
+                    <img class="share-img hide" src="/images/share-friends.png?09221"/>
+                    <img class="page2-center" src="/images/page-6/page6-center.png?09221" />
                 </div>
             </div>
         </div>
@@ -99,13 +99,13 @@
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             link: 'http://hayt.kerryon.me/share/index?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: 'Giftoftheday How Are You Today?',
                             link: 'http://hayt.kerryon.me/share/indexsource={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?0922'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
                         });
                     });
                 }
