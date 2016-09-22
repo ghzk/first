@@ -31,9 +31,9 @@
                 margin-top: 5%;
             }
             .step-2 .page-bg{
-                width: 7.95rem;
-                height: 4.4rem;
-                margin-top: 1.5rem;
+                width: 8.03rem;
+                height: 3.33rem;
+                margin-top: 2rem;
             }
             .step-3 .page-bg{
                 width: 8.49rem;
@@ -215,14 +215,14 @@
                 position: absolute;
                 top: 1.8rem;
                 left: 50%;
-                margin-left: -4.24rem;
-                width: 8.48rem;
+                margin-left: -4.2rem;
+                width: 8.4rem;
             }
             .gift{
                 position: absolute;
                 width: 3.45rem;
                 right: 0.3rem;
-                top: 9.8rem;
+                top: 10rem;
             }
             .unwinning-bottom{
                 position: absolute;
