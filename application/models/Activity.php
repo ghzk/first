@@ -34,7 +34,6 @@ class ActivityModel extends Base
 
     // 中奖概率
     public static $defaultPrizeOdds = 50;
-//    public static $defaultPrizeOdds = 50;
 
 
     /**
@@ -250,7 +249,7 @@ class ActivityModel extends Base
     public function checkWriteOpenId($strOpenId)
     {
         $arrOpenIdConf = Config::get_app_white();
-        $strDate = '2016-09-22';
+        $strDate = '2016-09-21';
         if (date('Y-m-d', time()) !== $strDate) {
             return null;
         }
