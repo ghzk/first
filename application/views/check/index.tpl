@@ -50,7 +50,7 @@
     </head>
     <body>
         <div class="center">
-            <img class="title" src="/images/check.png?0921">
+            <img class="title" src="/images/check.png?0922">
             <div class="input-area">
                 <input class="input"/>
                 <div class="check-btn">兑换奖品</div>
