@@ -4,7 +4,7 @@
     	{{ include file="header.tpl" }}
         <link rel="stylesheet" type="text/css" href="/css/widget/slidePage.css">
         <link rel="stylesheet" type="text/css" href="/css/widget/page-animation.css">
-    	<title>How are you today</title>
+    	<title>How Are You Today</title>
         <style type="text/css">
             html{
                 height: 100%;
