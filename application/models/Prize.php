@@ -24,7 +24,7 @@ class PrizeModel extends Base
     const NOT_DELETE = 0;
 
     // 七牛存储host
-    const QINIU_HOST = 'http://odqoj6uu3.bkt.clouddn.com';
+    const QINIU_HOST = 'http://odwgdo6a0.bkt.clouddn.com';
 
     const LOCATION_PREF = '静安嘉里中心';
     const LOCATION_EN_PREF = 'Jing An Kerry Centre ';
@@ -84,6 +84,22 @@ class PrizeModel extends Base
         }
 
         return $arrResult;
+    }
+
+    /**
+     * 获取所有奖品logo
+     * @return array
+     */
+    public function getAllPrizeLogo()
+    {
+        $arrPrize = $this->getAllPrizeList();
+
+        $arrLogo = [];
+        foreach ($arrPrize as $item) {
+            $arrLogo[] = $item['logo'];
+        }
+
+        return $arrLogo;
     }
 
     /**

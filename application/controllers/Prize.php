@@ -27,9 +27,6 @@ class PrizeController extends Base
      */
     public function luckyAction()
     {
-        $arrErrorMap = Config::get_app_error();
-        throw new Exception($arrErrorMap[10404], 10404);
-
         $this->_checkStart();
 
         $arrInput = $this->arrInput;
@@ -43,8 +40,9 @@ class PrizeController extends Base
         $qrcode = $this->_buildQrCode($strOpenId, $intActId);
 
         $this->showResult([
-            'prize'  => $arrPrize,
-            'qrcode' => $qrcode,
+            'prize'     => $arrPrize,
+            'qrcode'    => $qrcode,
+//            'img_array' => PrizeModel::Instance()->getAllPrizeLogo(),
         ]);
     }
 
@@ -56,7 +54,7 @@ class PrizeController extends Base
     {
         $arrErrorMap = Config::get_app_error();
 
-        $date = '2016-09-22 10:00:00';
+        $date = '2016-09-23 10:00:00';
         if (time() <= strtotime($date)) {
             throw new Exception($arrErrorMap[10404], 10404);
         }
