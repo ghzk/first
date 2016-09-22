@@ -480,7 +480,17 @@
                                 setTimeout(function () {
                                     $('.step-5 .down-arrow').fadeIn();
                                 },5000);
-                                
+                                wx.onMenuShareTimeline({
+                                    title: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                    link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                    imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09222'
+                                });
+                                wx.onMenuShareAppMessage({
+                                    title: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                    desc: '#Giftoftheday How Are You Today?',
+                                    link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                    imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09222'
+                                });
                                 break;
                             case 6:
                                 setTimeout(function () {
