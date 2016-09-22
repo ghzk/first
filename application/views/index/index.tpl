@@ -545,12 +545,12 @@
                                                 $('.unwinning-area').find('.down-arrow').fadeIn();
                                             },2000);
                                             break;
-                                        /*case 12:
-                                            alert(1);
+                                        case 10404:
+                                            alert('活动还没有开始<br>敬请期待哦');
                                             $('.balloon').css({
                                                 'top' : '3.6rem'
                                             });
-                                            break;*/
+                                            break;
                                     }
                                 },1000);
                             }
@@ -567,7 +567,13 @@
                     $('.unwinning-area').html(html);
                 });
             }
-            new initPage();
+            var nowTime = new Date().getTime();
+            if(nowTime < new Date('2016/09/22 10:00:00').getTime()){
+                $('.slidePage-container').fadeIn();
+                alert('活动还没有开始<br>敬请期待哦');
+            }else{
+                new initPage();    
+            }
     	});
     </script>
     <script>
