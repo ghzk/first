@@ -27,7 +27,10 @@ class PrizeController extends Base
      */
     public function luckyAction()
     {
-//        $this->_checkStart();
+        $arrErrorMap = Config::get_app_error();
+        throw new Exception($arrErrorMap[10404], 10404);
+
+        $this->_checkStart();
 
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
