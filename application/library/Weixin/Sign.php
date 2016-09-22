@@ -26,6 +26,21 @@ class Sign
     }
 
     /**
+     * 获取微信配置
+     * @return array
+     */
+    private function _getOptions()
+    {
+        $options = array(
+            'token'     => $this->options['token'],
+            'appid'     => $this->options['appid'],
+            'appsecret' => $this->options['appsecret'],
+        );
+
+        return $options;
+    }
+
+    /**
      * 获取js签名
      *
      * @param $url
@@ -34,15 +49,17 @@ class Sign
      */
     public function getJsSign($url)
     {
-        $options = array(
-            'token'     => $this->options['token'],
-            'appid'     => $this->options['appid'],
-            'appsecret' => $this->options['appsecret'],
-        );
+        $options = $this->_getOptions();
         $we_obj = new Wechat($options);
 
         $arrSigns = $we_obj->getJsSign($url);
 
         return $arrSigns;
     }
+
+    public function getUnionId()
+    {
+
+    }
+
 }

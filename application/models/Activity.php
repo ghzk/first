@@ -26,9 +26,11 @@ class ActivityModel extends Base
 
     // 每天参与次数
     const MAX_JOIN_TIMES = 2;
+//    const MAX_JOIN_TIMES = 1000;
 
     // 累计中奖次数上限, 则降低中奖概率
     const MAX_WINED_TIMES_FALLING = 4;
+//    const MAX_WINED_TIMES_FALLING = 1000;
 
     // 中奖概率
     public static $defaultPrizeOdds = 50;
@@ -237,6 +239,7 @@ class ActivityModel extends Base
         return $intOdds;
     }
 
+
     /**
      * 检查白名单
      *
@@ -247,7 +250,7 @@ class ActivityModel extends Base
     public function checkWriteOpenId($strOpenId)
     {
         $arrOpenIdConf = Config::get_app_white();
-        $strDate = '2016-09-22';
+        $strDate = '2016-09-23';
         if (date('Y-m-d', time()) !== $strDate) {
             return null;
         }
