@@ -410,13 +410,13 @@
                         wx.onMenuShareTimeline({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09222'
                         });
                         wx.onMenuShareAppMessage({
                             title: '#Giftoftheday 领取你的惊喜，开启好心情！',
                             desc: '#Giftoftheday How Are You Today?',
                             link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
+                            imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09222'
                         });
                     });
                 }
@@ -439,6 +439,13 @@
                                     },600);
                                 },1000);
                                 $('.unwinning-area').hide();
+                                var i = 1;
+                                setInterval(function(){
+                                    $('.expression-click-img').css({
+                                        'top' : (i%3) * 2.7 + 1 + 'rem'
+                                    });
+                                    i++;
+                                },1500);
                                 break;
                             case 3:
                                 setTimeout(function () {
@@ -466,13 +473,13 @@
                                     wx.onMenuShareTimeline({
                                         title: '#Giftoftheday How Are You Today?',
                                         link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
                                     });
                                     wx.onMenuShareAppMessage({
                                         title: '#Giftoftheday How Are You Today?',
                                         desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
                                         link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg.jpg?09221'
+                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
                                     });
                                 });
                                 break;
