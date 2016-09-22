@@ -518,9 +518,9 @@
                             success: function(data) {
                                 submitSign = true;
                                 setTimeout(function () {
-                                    slidePage.index(4);
                                     switch (data.code) {
                                         case 0:
+                                            slidePage.index(4);
                                             $('.winning-area').show();
                                             $('.prize-brand-font').html(data.result.prize.brand);
                                             $('.prize-location').html('PICK IT UP: '+data.result.prize.location_en+'<br>领取地点:' + data.result.prize.location);
@@ -534,22 +534,22 @@
                                             },3000);
                                             break;
                                         case 10010:
+                                            slidePage.index(4);
                                             $('.unwinning-area').show();
                                             setTimeout(function () {
                                                 $('.unwinning-area').find('.down-arrow').fadeIn();
                                             },2000);
                                             break;
                                         case 10011:
+                                            slidePage.index(4);
                                             $('.unwinning-area').show();
                                             setTimeout(function () {
                                                 $('.unwinning-area').find('.down-arrow').fadeIn();
                                             },2000);
                                             break;
                                         case 10404:
-                                            alert('活动还没有开始<br>敬请期待哦');
-                                            $('.balloon').css({
-                                                'top' : '3.6rem'
-                                            });
+                                            alert(data.message);
+                                            window.location.reload();
                                             break;
                                     }
                                 },1000);
@@ -570,7 +570,7 @@
             var nowTime = new Date().getTime();
             if(nowTime < new Date('2016/09/22 10:00:00').getTime()){
                 $('.slidePage-container').fadeIn();
-                alert('活动还没有开始<br>敬请期待哦');
+                alert('活动还没有开始，敬请期待哦');
             }else{
                 new initPage();    
             }
