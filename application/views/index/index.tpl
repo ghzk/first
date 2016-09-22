@@ -165,14 +165,14 @@
             }
             .winning-title{
                 position: absolute;
-                top: 2.8rem;
+                top: 2.2rem;
                 left: 50%;
                 margin-left: -4.22rem;
                 width: 8.44rem;
             }
             .prize-area{
                 width: 10rem;
-                top: 4.2rem;
+                top: 3.8rem;
                 position: absolute;
                 padding: 0rem 0.8rem;
             }
@@ -445,7 +445,7 @@
                                         'top' : (i%3) * 2.7 + 1 + 'rem'
                                     });
                                     i++;
-                                },1500);
+                                },1200);
                                 break;
                             case 3:
                                 setTimeout(function () {
@@ -458,6 +458,17 @@
                                 $('.balloon').css({
                                     'top' : '3.6rem'
                                 });
+                                wx.onMenuShareTimeline({
+                                    title: '#Giftoftheday How Are You Today?',
+                                    link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                    imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
+                                });
+                                wx.onMenuShareAppMessage({
+                                    title: '#Giftoftheday How Are You Today?',
+                                    desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
+                                    link: 'http://hayt.kerryon.me?source={{ $openid }}',
+                                    imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
+                                });
                                 break;
                             case 5:
                                 setTimeout(function () {
@@ -469,19 +480,7 @@
                                 setTimeout(function () {
                                     $('.step-5 .down-arrow').fadeIn();
                                 },5000);
-                                wx.ready(function(){
-                                    wx.onMenuShareTimeline({
-                                        title: '#Giftoftheday How Are You Today?',
-                                        link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
-                                    });
-                                    wx.onMenuShareAppMessage({
-                                        title: '#Giftoftheday How Are You Today?',
-                                        desc: '#Giftoftheday 领取你的惊喜，开启好心情！',
-                                        link: 'http://hayt.kerryon.me?source={{ $openid }}',
-                                        imgUrl: 'http://'+window.location.hostname+'/images/shareImg2.jpg?09222'
-                                    });
-                                });
+                                
                                 break;
                             case 6:
                                 setTimeout(function () {
@@ -530,7 +529,7 @@
                                             slidePage.index(4);
                                             $('.winning-area').show();
                                             $('.prize-brand-font').html(data.result.prize.brand);
-                                            $('.prize-location').html('PICK IT UP: '+data.result.prize.location_en+'<br>领取地点:' + data.result.prize.location);
+                                            $('.prize-location').html('PICK IT UP: '+data.result.prize.location_en+'<br>领取地点: ' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
                                             /*var i = 0 ;
                                             var clock = setInterval(function(){
