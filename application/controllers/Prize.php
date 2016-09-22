@@ -27,7 +27,7 @@ class PrizeController extends Base
      */
     public function luckyAction()
     {
-        $this->_checkStart();
+//        $this->_checkStart();
 
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
