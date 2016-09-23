@@ -66,31 +66,33 @@
             }
             var bindBtnFunc = function () {
                 $('.check-btn').on('click',function () {
-                    var code = $.trim($('.input').val());
-                    var act_id = GetQueryString('act_id');
-                    var openid = GetQueryString('openid');
-                    if(code == ''){
-                        alert('请输入暗号');
-                    }else{
-                        if(submitSign == true){
-                            submitSign = false;
-                            $.ajax({
-                                type: 'post',
-                                url: '/check/code',
-                                data : {
-                                    act_id : act_id,
-                                    openid : openid,
-                                    code : code
-                                },
-                                success: function(data) {
-                                    submitSign = true;
-                                    if(data.code == 0){
-                                        alert('二维码校验成功，请兑奖');
-                                    }else{
-                                        alert(data.message);
+                    if(confirm('确定要兑奖么？') == true){
+                        var code = $.trim($('.input').val());
+                        var act_id = GetQueryString('act_id');
+                        var openid = GetQueryString('openid');
+                        if(code == ''){
+                            alert('请输入暗号');
+                        }else{
+                            if(submitSign == true){
+                                submitSign = false;
+                                $.ajax({
+                                    type: 'post',
+                                    url: '/check/code',
+                                    data : {
+                                        act_id : act_id,
+                                        openid : openid,
+                                        code : code
+                                    },
+                                    success: function(data) {
+                                        submitSign = true;
+                                        if(data.code == 0){
+                                            alert('二维码校验成功，请兑奖');
+                                        }else{
+                                            alert(data.message);
+                                        }
                                     }
-                                }
-                            });
+                                });
+                            }
                         }
                     }
                 });
