@@ -30,12 +30,13 @@ class StatisticModel extends Base
 
     protected function getSku()
     {
-        $allSkuNum = 1865;
+//        $allSkuNum = 1865;
+        $allSkuNum = PrizeModel::Instance()->getOnlineSkuSum();
 
         $nowSkuNum = PrizeModel::Instance()->getSkuSum();
 
         return [
-            'sku_all'     => $allSkuNum,
+            'sku_all'     => intval($allSkuNum),
             'sku_now'     => intval($nowSkuNum),
             'sku_percent' => round($nowSkuNum * 100 / $allSkuNum, 2) . '%',
         ];

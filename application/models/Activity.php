@@ -35,7 +35,7 @@ class ActivityModel extends Base
     // 中奖概率
     public static $defaultPrizeOdds = 50;
 
-
+    
     /**
      * @return ActivityModel
      */
@@ -290,7 +290,7 @@ class ActivityModel extends Base
             throw new Exception($arrErrorMap[10011], 10011);
         }
         $intOdds = $this->getUserOdds($strOpenId);
-
+        
         $bolWinRes = false;     // 是否中奖
         $intPrizeId = 0;
         $intActId = 0;

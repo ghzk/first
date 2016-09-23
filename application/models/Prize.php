@@ -18,6 +18,7 @@ class PrizeModel extends Base
 {
 
     const TABLE_PRIZE = 'prize';
+    const TABLE_PRIZE_ONLINE = 'prize_online';
 
     // 是否删除
     const IS_DELETE = 1;
@@ -135,6 +136,18 @@ class PrizeModel extends Base
     {
         return $this->db()
             ->table(self::TABLE_PRIZE)
+            ->where('is_delete', '=', self::NOT_DELETE)
+            ->sum('sku');
+    }
+
+    /**
+     * @return mixed
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getOnlineSkuSum()
+    {
+        return $this->db()
+            ->table(self::TABLE_PRIZE_ONLINE)
             ->where('is_delete', '=', self::NOT_DELETE)
             ->sum('sku');
     }
