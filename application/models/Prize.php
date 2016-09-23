@@ -170,6 +170,24 @@ class PrizeModel extends Base
         return $bolRes;
     }
 
+    /**
+     * 库存增加amount
+     *
+     * @param $intPrizeId
+     * @param int $amount
+     *
+     * @return int
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function incrementPrize($intPrizeId, $amount = 1)
+    {
+        $bolRes = $this->db()
+            ->table(self::TABLE_PRIZE)
+            ->where('id', '=', $intPrizeId)
+            ->increment('sku', $amount);
+
+        return $bolRes;
+    }
 
     /**
      * 获取中奖的产品id

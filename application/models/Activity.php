@@ -35,7 +35,7 @@ class ActivityModel extends Base
     // 中奖概率
     public static $defaultPrizeOdds = 50;
 
-    
+
     /**
      * @return ActivityModel
      */
@@ -79,6 +79,25 @@ class ActivityModel extends Base
             ->where('openid', '=', $strOpenId)
             ->where('create_time', '>', $todayTime['start'])
             ->where('create_time', '<', $todayTime['end'])
+            ->get();
+
+        return $arrList;
+    }
+
+    /**
+     * 获取已过期的中奖的列表
+     * @return array|static[]
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getExpiredWinedJoinList()
+    {
+        $expiredTime = date('Y-m-d H:i:s', time() - 86400);
+
+        $arrList = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->select('*')
+            ->where('status', '=', self::STATUS_WINED)
+            ->where('create_time', '<', $expiredTime)
             ->get();
 
         return $arrList;
@@ -290,7 +309,7 @@ class ActivityModel extends Base
             throw new Exception($arrErrorMap[10011], 10011);
         }
         $intOdds = $this->getUserOdds($strOpenId);
-        
+
         $bolWinRes = false;     // 是否中奖
         $intPrizeId = 0;
         $intActId = 0;
