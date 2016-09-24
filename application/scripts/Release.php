@@ -53,6 +53,9 @@ function run()
 {
     $prizeIdCount = get_exp_act_prize_list();
     if (!empty($prizeIdCount)) {
+        // 设置过期状态
+        ActivityModel::Instance()->setExpiredWinedStatus();
+
         foreach ($prizeIdCount as $intPrizeId => $intAmount) {
             $bolRes = PrizeModel::Instance()->incrementPrize($intPrizeId, $intAmount);
             $strRes = $bolRes ? '成功' : '失败';

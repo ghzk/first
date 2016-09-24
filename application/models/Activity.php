@@ -23,7 +23,8 @@ class ActivityModel extends Base
     const STATUS_NOT_WIN = 0;   // 未中奖
     const STATUS_WINED = 1;     // 已中奖
     const STATUS_CHECKED = 2;   // 已核销
-
+    const STATUS_EXPIRED = 3;   // 已过期
+    
     // 每天参与次数
     const MAX_JOIN_TIMES = 2;
 
@@ -103,6 +104,28 @@ class ActivityModel extends Base
 
         return $arrList;
     }
+
+    /**
+     * 设置过期状态
+     * @return int
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function setExpiredWinedStatus()
+    {
+        // 设置已中奖, 但是超过24小时未领奖的状态, 变更为`已过期`
+        $expiredTime = date('Y-m-d H:i:s', time() - 86400);
+
+        $bolRes = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->where('status', '=', self::STATUS_WINED)
+            ->where('create_time', '<', $expiredTime)
+            ->update([
+                'status' => self::STATUS_EXPIRED,
+            ]);
+
+        return $bolRes;
+    }
+
 
     /**
      * 获取某个用户参与记录
@@ -269,7 +292,8 @@ class ActivityModel extends Base
         $intTodayWinedTimes = 0;
         $arrTodayJoinList = $this->getUserTodayJoinList($strOpenId);
         foreach ($arrTodayJoinList as $item) {
-            if ($item['status'] > self::STATUS_NOT_WIN) {
+//            if ($item['status'] > self::STATUS_NOT_WIN) {
+            if (in_array($item['status'], array(self::STATUS_WINED, self::STATUS_CHECKED))) {
                 $intTodayWinedTimes++;
             }
         }
@@ -283,7 +307,8 @@ class ActivityModel extends Base
         $intWinedTimes = 0;
         $arrJoinList = $this->getUserJoinList($strOpenId);
         foreach ($arrJoinList as $item) {
-            if ($item['status'] > self::STATUS_NOT_WIN) {
+//            if ($item['status'] > self::STATUS_NOT_WIN) {
+            if (in_array($item['status'], array(self::STATUS_WINED, self::STATUS_CHECKED))) {
                 $intWinedTimes++;
             }
         }
