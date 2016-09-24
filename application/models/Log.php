@@ -47,6 +47,29 @@ class LogModel extends Base
     }
 
     /**
+     * 获取用户指定的商品兑换的时间
+     *
+     * @param $strOpenId
+     * @param $intPrizeId
+     *
+     * @return \___PHPSTORM_HELPERS\static|array
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getUserPrizeLastedChecked($strOpenId, $intPrizeId)
+    {
+        $arrInfo = $this->db()
+            ->table(self::TABLE_USER_LOG)
+            ->select('*')
+            ->where('type', '=', 'check')
+            ->where('openid', '=', $strOpenId)
+            ->where('prize_id', '=', $intPrizeId)
+            ->orderBy('create_time', 'desc')
+            ->get();
+
+        return !empty($arrInfo) ? $arrInfo[0] : [];
+    }
+
+    /**
      * 添加日志
      *
      * @param $type

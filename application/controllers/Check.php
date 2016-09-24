@@ -98,7 +98,12 @@ class CheckController extends Base
                 throw new Exception($arrErrorMap[$errCodeStatusUnWin], $errCodeStatusUnWin);
                 break;
             case ActivityModel::STATUS_CHECKED:
-                throw new Exception($arrErrorMap[$errCodeStatusChecked], $errCodeStatusChecked);
+                $intPrizeId = $arrAct['prize_id'];
+                $checkedInfo = LogModel::Instance()->getUserPrizeLastedChecked($strOpenId, $intPrizeId);
+                $checkedTime = $checkedInfo ? $checkedInfo['create_time'] : '';
+
+                $errMsg = str_replace('%s', $checkedTime, $arrErrorMap[$errCodeStatusChecked]);
+                throw new Exception($errMsg, $errCodeStatusChecked);
                 break;
             default:
                 break;
