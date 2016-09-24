@@ -26,14 +26,15 @@ class ActivityModel extends Base
 
     // 每天参与次数
     const MAX_JOIN_TIMES = 2;
-//    const MAX_JOIN_TIMES = 1000;
+
+    // 每天中奖次数上限
+    const MAX_TODAY_WINED_TIMES = 1;
 
     // 累计中奖次数上限, 则降低中奖概率
-    const MAX_WINED_TIMES_FALLING = 4;
-//    const MAX_WINED_TIMES_FALLING = 1000;
+    const MAX_WINED_TIMES_FALLING = 2;
 
     // 中奖概率
-    public static $defaultPrizeOdds = 50;
+    public static $defaultPrizeOdds = 30;
 
 
     /**
@@ -235,24 +236,60 @@ class ActivityModel extends Base
         //  累计抽奖4次, 中奖率为30%;
         //  累计中奖4次, 中奖率为0%;
 
-        $arrJoinList = $this->getUserJoinList($strOpenId);
+//        $arrJoinList = $this->getUserJoinList($strOpenId);
+//
+//        $intOdds = self::$defaultPrizeOdds;
+//        if (!empty($arrJoinList)) {
+//            if (count($arrJoinList) >= self::MAX_WINED_TIMES_FALLING) {
+//                $intOdds = 30;
+//            }
+//
+//            $intWinedTimes = 0;
+//            foreach ($arrJoinList as $item) {
+//                if ($item['status'] > self::STATUS_NOT_WIN) {
+//                    $intWinedTimes++;
+//                }
+//            }
+//
+//            if ($intWinedTimes >= self::MAX_WINED_TIMES_FALLING) {
+//                $intOdds = 0;
+//            }
+//        }
+
+
+        // 规则变更2: 09-24
+        // 每人每天抽奖机会2次上限
+        // 默认中奖率 30%
+        // 每人每天最多中奖 1次
+        // 累计中奖 2次, 中奖率为 0%
 
         $intOdds = self::$defaultPrizeOdds;
-        if (!empty($arrJoinList)) {
-            if (count($arrJoinList) >= self::MAX_WINED_TIMES_FALLING) {
-                $intOdds = 30;
-            }
 
-            $intWinedTimes = 0;
-            foreach ($arrJoinList as $item) {
-                if ($item['status'] > self::STATUS_NOT_WIN) {
-                    $intWinedTimes++;
-                }
+        // 获取用户今日中奖次数
+        $intTodayWinedTimes = 0;
+        $arrTodayJoinList = $this->getUserTodayJoinList($strOpenId);
+        foreach ($arrTodayJoinList as $item) {
+            if ($item['status'] > self::STATUS_NOT_WIN) {
+                $intTodayWinedTimes++;
             }
+        }
+        if ($intTodayWinedTimes >= self::MAX_TODAY_WINED_TIMES) {
+            $intOdds = 0;
 
-            if ($intWinedTimes >= self::MAX_WINED_TIMES_FALLING) {
-                $intOdds = 0;
+            return $intOdds;
+        }
+
+        // 累计中奖
+        $intWinedTimes = 0;
+        $arrJoinList = $this->getUserJoinList($strOpenId);
+        foreach ($arrJoinList as $item) {
+            if ($item['status'] > self::STATUS_NOT_WIN) {
+                $intWinedTimes++;
             }
+        }
+
+        if ($intWinedTimes >= self::MAX_WINED_TIMES_FALLING) {
+            $intOdds = 0;
         }
 
         return $intOdds;
@@ -320,12 +357,12 @@ class ActivityModel extends Base
             $bolWin = $this->_checkWin($intOdds);
             $intPrizeId = PrizeModel::Instance()->getWinPrizeId();
 
-            // 判断是否白名单内openId
-            $bolWhite = $this->checkWriteOpenId($strOpenId);
-            if ($bolWhite) {
-                $bolWin = true;
-                $intPrizeId = $bolWhite;
-            }
+//            // 判断是否白名单内openId
+//            $bolWhite = $this->checkWriteOpenId($strOpenId);
+//            if ($bolWhite) {
+//                $bolWin = true;
+//                $intPrizeId = $bolWhite;
+//            }
 
             if ($bolWin && $intPrizeId) {
                 // 添加获奖记录
