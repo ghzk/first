@@ -32,6 +32,19 @@ class LogModel extends Base
     }
 
     /**
+     * 获取今日起始结束时间
+     * @return array
+     */
+    public static function getTodayStartEnd()
+    {
+        return [
+            'now'   => date('Y-m-d H:i:s', time()),
+            'start' => date('Y-m-d 00:00:00', time()),
+            'end'   => date('Y-m-d 00:00:00', time() + 86400),
+        ];
+    }
+
+    /**
      * 获取日志列表
      * @return array|static[]
      * @throws \TheFairLib\Exception\Api\ApiException
@@ -45,6 +58,26 @@ class LogModel extends Base
 
         return $arrList;
     }
+
+    /**
+     * 获取今日中奖总次数
+     * @return int
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getUserTodayWinedCount()
+    {
+        $todayTime = self::getTodayStartEnd();
+
+        $intCount = $this->db()
+            ->table(self::TABLE_USER_LOG)
+            ->where('type', '=', 'check')
+            ->where('create_time', '>', $todayTime['start'])
+            ->where('create_time', '<', $todayTime['end'])
+            ->count();
+
+        return $intCount;
+    }
+
 
     /**
      * 获取用户指定的商品兑换的时间

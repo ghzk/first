@@ -24,18 +24,22 @@ class ActivityModel extends Base
     const STATUS_WINED = 1;     // 已中奖
     const STATUS_CHECKED = 2;   // 已核销
     const STATUS_EXPIRED = 3;   // 已过期
-    
+
     // 每天参与次数
     const MAX_JOIN_TIMES = 2;
 
     // 每天中奖次数上限
     const MAX_TODAY_WINED_TIMES = 1;
 
+    // 每天总中奖上限
+    const MAX_TODAY_ALL_WINED_TIMES = 50;
+
     // 累计中奖次数上限, 则降低中奖概率
     const MAX_WINED_TIMES_FALLING = 2;
 
+
     // 中奖概率
-    public static $defaultPrizeOdds = 30;
+    public static $defaultPrizeOdds = 0;
 
 
     /**
@@ -303,6 +307,17 @@ class ActivityModel extends Base
         // 累计中奖 2次, 中奖率为 0%
 
         $intOdds = self::$defaultPrizeOdds;
+
+
+        // 规则变更3:09-27
+        // 每天中奖超过上限, 中奖率为0
+        $intTodayWined = LogModel::Instance()->getUserTodayWinedCount();
+        if ($intTodayWined > self::MAX_TODAY_ALL_WINED_TIMES) {
+            $intOdds = 0;
+
+            return $intOdds;
+        }
+
 
         // 获取用户今日中奖次数
         $intTodayWinedTimes = 0;
