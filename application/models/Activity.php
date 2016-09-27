@@ -63,6 +63,22 @@ class ActivityModel extends Base
         ];
     }
 
+
+    /**
+     * 获取列表
+     * @return array|static[]
+     * @throws \TheFairLib\Exception\Api\ApiException
+     */
+    public function getList()
+    {
+        $arrList = $this->db()
+            ->table(self::TABLE_ACTIVITY)
+            ->select('*')
+            ->get();
+
+        return $arrList;
+    }
+
     /**
      * 获取今日用户参与列表
      *

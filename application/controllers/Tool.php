@@ -35,6 +35,13 @@ class ToolController extends Base
         $this->showResult($arrResult);
     }
 
+    public function dayAction()
+    {
+        $arrResult = StatisticModel::Instance()->day();
+
+        $this->showResult($arrResult);
+    }
+
     /**
      * 获取weixin签名
      * @throws Exception
