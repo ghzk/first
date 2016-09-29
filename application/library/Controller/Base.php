@@ -64,6 +64,21 @@ class Base extends Controller
             $this->arrInput['openid'] = $auth->open_id;
         }
     }
+    
+    /**
+     * 获取签名
+     *
+     * @param $strOpenId
+     *
+     * @return string
+     */
+    protected function getSign($strOpenId)
+    {
+        // 增加签名
+        $strSign = md5('qnm-nb' . md5('fuck' . $strOpenId));
+
+        return $strSign;
+    }
 
 
     /**

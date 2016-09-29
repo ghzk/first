@@ -44,7 +44,7 @@ class Base
     {
 
     }
-
+    
     protected function redis($redisDB = 'default')
     {
         if (!isset(self::$redis[$redisDB])) {

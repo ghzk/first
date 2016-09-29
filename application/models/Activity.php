@@ -39,7 +39,7 @@ class ActivityModel extends Base
 
 
     // 中奖概率
-    public static $defaultPrizeOdds = 0;
+    public static $defaultPrizeOdds = 5;
 
 
     /**
@@ -312,11 +312,23 @@ class ActivityModel extends Base
         // 规则变更3:09-27
         // 每天中奖超过上限, 中奖率为0
         $intTodayWined = LogModel::Instance()->getUserTodayWinedCount();
-        if ($intTodayWined > self::MAX_TODAY_ALL_WINED_TIMES) {
+        if ($intTodayWined >= self::MAX_TODAY_ALL_WINED_TIMES) {
             $intOdds = 0;
 
             return $intOdds;
         }
+
+        // 规则变更4: 09-29
+        // 非10-22点访问,中奖率为0
+        $now = time();
+        $startTime = date('Y-m-d 10:00:00', $now);
+        $endTime = date('Y-m-d 22:00:00', $now);
+        if ($now < strtotime($startTime) || $now > strtotime($endTime)) {
+            $intOdds = 0;
+
+            return $intOdds;
+        }
+
 
 
         // 获取用户今日中奖次数
@@ -437,7 +449,7 @@ class ActivityModel extends Base
                 // 未中奖或没有奖品了
                 $query1 = $this->addActivityJoinInfo($strOpenId, 0, self::STATUS_NOT_WIN);
                 $intActId = $query1;
-
+                
                 $query2 = true;
                 $query3 = LogModel::Instance()->add('not_win', [
                     'openid'   => $strOpenId,

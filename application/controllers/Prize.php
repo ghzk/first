@@ -27,11 +27,13 @@ class PrizeController extends Base
      */
     public function luckyAction()
     {
-        $this->_checkStart();
+//        $this->_checkStart();
 
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
 
+//        $this->_checkSign($arrInput);
+        
         $arrInfo = ActivityModel::Instance()->lucky($arrInput);
         $intPrizeId = $arrInfo['prize_id'];
         $intActId = $arrInfo['act_id'];
@@ -40,10 +42,32 @@ class PrizeController extends Base
         $qrcode = $this->_buildQrCode($strOpenId, $intActId);
 
         $this->showResult([
-            'prize'     => $arrPrize,
-            'qrcode'    => $qrcode,
+            'prize'  => $arrPrize,
+            'qrcode' => $qrcode,
 //            'img_array' => PrizeModel::Instance()->getAllPrizeLogo(),
         ]);
+    }
+
+    private function _checkSign($arrInput)
+    {
+        $bolError = false;
+        $arrErrorMap = Config::get_app_error();
+        if (empty($arrInput['sign']) || empty($arrInput['openid'])) {
+            $bolError = true;
+        }
+        $strOpenId = $arrInput['openid'];
+
+        $strSign = $this->getSign($strOpenId);
+        if ($strSign !== $arrInput['sign']) {
+            $bolError = true;
+        }
+
+        if ($bolError) {
+            LogModel::Instance()->add('cheat', [
+                'openid' => $strOpenId,
+            ]);
+            throw new Exception($arrErrorMap[10010], 10010);
+        }
     }
 
     /**

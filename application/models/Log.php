@@ -70,7 +70,7 @@ class LogModel extends Base
 
         $intCount = $this->db()
             ->table(self::TABLE_USER_LOG)
-            ->where('type', '=', 'check')
+            ->where('type', '=', 'wined')
             ->where('create_time', '>', $todayTime['start'])
             ->where('create_time', '<', $todayTime['end'])
             ->count();
@@ -101,7 +101,7 @@ class LogModel extends Base
 
         return !empty($arrInfo) ? $arrInfo[0] : [];
     }
-
+    
     /**
      * 添加日志
      *
