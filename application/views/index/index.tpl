@@ -530,7 +530,7 @@
                         },100);
                         $.ajax({
                             type: 'get',
-                            url: '/prize/lucky',
+                            url: '/prize/lucky?sign={{ $sign }}',
                             success: function(data) {
                                 submitSign = true;
                                 setTimeout(function () {
@@ -541,15 +541,6 @@
                                             $('.prize-brand-font').html(data.result.prize.brand);
                                             $('.prize-location').html('PICK IT UP: '+data.result.prize.location_en+'<br>领取地点: ' + data.result.prize.location);
                                             $('.prize-brand').attr('src',data.result.prize.logo+'?imageView2/2/w/480');
-                                            /*var i = 0 ;
-                                            var clock = setInterval(function(){
-                                                if(i < data.result.img_array.length){
-                                                    $('.prize-brand').attr('src',data.result.img_array[i]+'?imageView2/2/w/480');
-                                                    i++
-                                                }else{
-                                                    clearInterval(clock);
-                                                }
-                                            },5000);*/
                                             $('.qr-code').attr('src',data.result.qrcode);
                                             setTimeout(function () {
                                                 $('.winning-area').find('.down-arrow').fadeIn();
