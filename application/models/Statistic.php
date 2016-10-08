@@ -44,25 +44,14 @@ class StatisticModel extends Base
 
     protected function getUserLog()
     {
-        $logList = LogModel::Instance()->getList();
-
-        $arrTmpList = [];
-
-        foreach ($logList as $item) {
-            $date = date('Y-m-d', strtotime($item['create_time']));
-            $type = $item['type'];
-
-            $arrTmpList[$date][$type][] = $item['openid'];
-        }
-
+        $logList = LogModel::Instance()->getListForCount();
         $arrSum = [];
-        foreach ($arrTmpList as $date => $dateVal) {
-            foreach ($dateVal as $type => $openIds) {
-                $arrSum[$date][$type] = count($openIds);
-                $arrSum[$date][$type . '_distinct'] = count(array_unique($openIds));
-            }
+        foreach ($logList as $item) {
+            $date = $item['tt'];
+            $type = $item['type'];
+            $arrSum[$date][$type] = $item['count'];
+            $arrSum[$date][$type . '_distinct'] = $item['count_distinct'];
         }
-
         return $arrSum;
     }
 
@@ -95,7 +84,6 @@ class StatisticModel extends Base
             $arrDiff[$date] = count($diff);
             $allDiff += $arrDiff[$date];
         }
-
 
         $arrUserLog = $this->getUserLog();
         krsort($arrUserLog);
