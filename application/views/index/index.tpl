@@ -584,9 +584,9 @@
                 });
             }
             var nowTime = new Date().getTime();
-            if(nowTime < new Date('2016/09/23 10:00:00').getTime()){
+            if(nowTime > new Date('2016/10/13 00:00:00').getTime()){
                 $('.slidePage-container').fadeIn();
-                alert('活动还没有开始，敬请期待哦');
+                alert('活动已经结束~');
             }else{
                 new initPage();    
             }
