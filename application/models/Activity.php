@@ -38,7 +38,7 @@ class ActivityModel extends Base
     const MAX_WINED_TIMES_FALLING = 2;
 
     // 中奖概率
-    public static $defaultPrizeOdds = 50;
+    public static $defaultPrizeOdds = 0;
 
 
     /**
