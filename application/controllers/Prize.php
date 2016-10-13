@@ -32,8 +32,8 @@ class PrizeController extends Base
         $arrInput = $this->arrInput;
         $strOpenId = $arrInput['openid'];
 
-//        $this->_checkSign($arrInput);
-        
+        $this->_checkSign($arrInput);
+
         $arrInfo = ActivityModel::Instance()->lucky($arrInput);
         $intPrizeId = $arrInfo['prize_id'];
         $intActId = $arrInfo['act_id'];

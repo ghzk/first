@@ -59,6 +59,17 @@ class LogModel extends Base
         return $arrList;
     }
 
+    public function getListForCount()
+    {
+        $arrList = $this->db()
+            ->table(self::TABLE_USER_LOG)
+            ->select($this->db()->raw('`type`, count(openid) as count, count(distinct openid) as count_distinct, DATE_FORMAT(create_time, \'%Y-%m-%d\') as tt'))
+            ->groupBy('tt', 'type')
+            ->get();
+
+        return $arrList;
+    }
+
     /**
      * 获取今日中奖总次数
      * @return int
@@ -101,7 +112,7 @@ class LogModel extends Base
 
         return !empty($arrInfo) ? $arrInfo[0] : [];
     }
-    
+
     /**
      * 添加日志
      *

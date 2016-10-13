@@ -32,14 +32,13 @@ class ActivityModel extends Base
     const MAX_TODAY_WINED_TIMES = 1;
 
     // 每天总中奖上限
-    const MAX_TODAY_ALL_WINED_TIMES = 50;
+    const MAX_TODAY_ALL_WINED_TIMES = 200;
 
     // 累计中奖次数上限, 则降低中奖概率
     const MAX_WINED_TIMES_FALLING = 2;
 
-
     // 中奖概率
-    public static $defaultPrizeOdds = 5;
+    public static $defaultPrizeOdds = 50;
 
 
     /**
@@ -311,12 +310,12 @@ class ActivityModel extends Base
 
         // 规则变更3:09-27
         // 每天中奖超过上限, 中奖率为0
-        $intTodayWined = LogModel::Instance()->getUserTodayWinedCount();
-        if ($intTodayWined >= self::MAX_TODAY_ALL_WINED_TIMES) {
-            $intOdds = 0;
-
-            return $intOdds;
-        }
+//        $intTodayWined = LogModel::Instance()->getUserTodayWinedCount();
+//        if ($intTodayWined >= self::MAX_TODAY_ALL_WINED_TIMES) {
+//            $intOdds = 0;
+//
+//            return $intOdds;
+//        }
 
         // 规则变更4: 09-29
         // 非10-22点访问,中奖率为0
